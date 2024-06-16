@@ -26,5 +26,8 @@
         "cmd": "pnpm dlx @biomejs/biome lint ${file} --apply-unsafe"
       }
     ]
-  }
+  },
+  "cSpell.words": [
+    "chromaui"
+  ]
 }
