@@ -1,4 +1,5 @@
 import type { StorybookConfig } from '@storybook/nextjs';
+import path from 'node:path';
 
 const config: StorybookConfig = {
   stories: [
@@ -21,5 +22,19 @@ const config: StorybookConfig = {
     },
   },
   staticDirs: ['../public'],
+  webpackFinal: async (config) => {
+    if (!config.resolve) {
+      return config;
+    }
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      '@/app': path.resolve(__dirname, '../app'),
+    };
+    return config;
+  },
+  env: (config) => ({
+    ...config,
+    EXAMPLE_VAR: 'An environment variable configured in Storybook',
+  }),
 };
 export default config;
