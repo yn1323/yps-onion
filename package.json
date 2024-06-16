@@ -41,6 +41,7 @@
     "jsdom": "^23.0.1",
     "msw": "^2.3.1",
     "msw-storybook-addon": "^2.0.2",
+    "playwright": "^1.44.1",
     "postcss": "^8.4.38",
     "scaffdog": "^4.0.0",
     "storybook": "^8.1.9",
