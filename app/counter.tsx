@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import { useState } from "react";
+import { useState } from 'react';
 
 export default function Counter() {
   const [count, setCount] = useState(0);
@@ -10,6 +10,7 @@ export default function Counter() {
       <button type="button" onClick={() => setCount(count + 1)}>
         +
       </button>
+      <div className="m-1 p-4 px-2" />
     </>
   );
 }
