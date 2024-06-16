@@ -1,6 +1,14 @@
 name: Chromatic
 description: Chromatic
 
+inputs:
+  G_TOKEN:
+    description: 'github token'
+    required: true
+  CHROMATIC_PROJECT_TOKEN:
+    description: 'chromatic token'
+    required: true
+
 runs:
   using: "composite"
   steps:
