@@ -7,12 +7,24 @@
     "source.addMissingImports": "explicit",
     "source.organizeImports": "explicit"
   },
+  // Tailwind Variantsの設定
   "tailwindCSS.experimental.classRegex": [
     ["tv\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"]
   ],
+  // GPU
   "terminal.integrated.gpuAcceleration": "on",
+  // フォーマット
   "editor.tabSize": 2,
   "editor.insertSpaces": true,
   "typescript.tsdk": "node_modules/typescript/lib",
-  "typescript.preferences.importModuleSpecifier": "non-relative"
+  "typescript.preferences.importModuleSpecifier": "non-relative",
+  // BiomeのuseSortedClassがnursery(linter機能のみ提供)のため、拡張機能で実装
+  "emeraldwalk.runonsave": {
+    "commands": [
+      {
+        "match": "\\.(ts|tsx)$",
+        "cmd": "pnpm dlx @biomejs/biome lint ${file} --apply-unsafe"
+      }
+    ]
+  }
 }
