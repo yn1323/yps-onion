@@ -34,7 +34,7 @@
     "@storybook/test-runner": "^0.18.2",
     "@testing-library/react": "14.1.2",
     "@types/node": "20.10.4",
-    "@types/react": "18.2.45",
+    "@types/react": "18.3.3",
     "@vitejs/plugin-react": "^4.2.1",
     "autoprefixer": "^10.4.19",
     "chromatic": "^11.5.4",
