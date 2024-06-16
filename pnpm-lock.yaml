@@ -58,8 +58,8 @@ importers:
         specifier: ^0.18.2
         version: 0.18.2(@swc/helpers@0.5.5)(@types/node@20.10.4)(prettier@3.3.2)
       '@testing-library/react':
-        specifier: 14.1.2
-        version: 14.1.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        specifier: 14.3.1
+        version: 14.3.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@types/node':
         specifier: 20.10.4
         version: 20.10.4
@@ -2168,8 +2168,8 @@ packages:
       vitest:
         optional: true
 
-  '@testing-library/react@14.1.2':
-    resolution: {integrity: sha512-z4p7DVBTPjKM5qDZ0t5ZjzkpSNb+fZy1u6bzO7kk8oeGagpPCAtgh4cx1syrfp7a+QWkM021jGqjJaxJJnXAZg==}
+  '@testing-library/react@14.3.1':
+    resolution: {integrity: sha512-H99XjUhWQw0lTgyMN05W3xQG1Nh4lq574D8keFf1dDoNTJgp66VbJozRaczoF+wsiaPJNt/TcnfpLGufGxSrZQ==}
     engines: {node: '>=14'}
     peerDependencies:
       react: ^18.0.0
@@ -9657,7 +9657,7 @@ snapshots:
       jest: 29.7.0(@types/node@20.10.4)
       vitest: 1.0.4(@types/node@20.10.4)(jsdom@23.2.0)(terser@5.31.1)
 
-  '@testing-library/react@14.1.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@testing-library/react@14.3.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@babel/runtime': 7.24.7
       '@testing-library/dom': 9.3.4
