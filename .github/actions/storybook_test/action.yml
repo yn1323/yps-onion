@@ -4,9 +4,20 @@ description: Storybook Test
 runs:
   using: 'composite'
   steps:
-    - name: Build storybook
-      run: pnpm build-storybook
+    - name: Setup Playwright cache
+      id: playwright-cache
+      uses: actions/cache@v4
+      with:
+        path: /home/runner/.cache
+        key: ${{ runner.os }}-playwright-cache-${{ hashFiles('**/.storybook/test-runner.ts') }}
+        restore-keys: ${{ runner.os }}-playwright-cache-
+    - name: Install Playwright
       shell: bash
+      if: steps.playwright-cache.outputs.cache-hit != 'true'
+      run: pnpm exec playwright install --with-deps
+    - name: Build storybook
+      shell: bash
+      run: pnpm build-storybook
     - name: Storybook test
       run: pnpm test-storybook:ci
       shell: bash
