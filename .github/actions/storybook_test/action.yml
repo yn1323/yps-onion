@@ -5,7 +5,7 @@ runs:
   using: 'composite'
   steps:
     - name: Build storybook
-      run: pnpm run build-storybook
+      run: pnpm build-storybook
       shell: bash
     - name: Storybook test
       run: pnpm test-storybook:ci
