@@ -5,8 +5,8 @@ runs:
   using: 'composite'
   steps:
     - name: Build storybook
-      run: npm run build-storybook
+      run: pnpm run build-storybook
       shell: bash
     - name: Storybook test
-      run: npm run test-storybook:ci
+      run: pnpm test-storybook:ci
       shell: bash
