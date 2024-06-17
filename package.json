@@ -15,6 +15,7 @@
     "test-storybook:ci": "pnpm dlx concurrently -k -s first -n \"SB,TEST\" -c \"magenta,blue\" \"pnpm dlx http-server storybook-static --port 6006 --silent\" \"pnpm dlx wait-on tcp:127.0.0.1:6006 && yarn test-storybook\""
   },
   "dependencies": {
+    "date-fns": "^3.6.0",
     "jotai": "^2.8.3",
     "next": "latest",
     "react": "^18.2.0",
