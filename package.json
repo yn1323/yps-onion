@@ -12,7 +12,12 @@
     "build-storybook": "storybook build",
     "generate": "scaffdog generate",
     "test-storybook": "test-storybook",
-    "test-storybook:ci": "pnpm dlx concurrently -k -s first -n \"SB,TEST\" -c \"magenta,blue\" \"pnpm dlx http-server storybook-static --port 6006 --silent\" \"pnpm dlx wait-on tcp:127.0.0.1:6006 && yarn test-storybook\""
+    "test-storybook:ci": "pnpm dlx concurrently -k -s first -n \"SB,TEST\" -c \"magenta,blue\" \"pnpm dlx http-server storybook-static --port 6006 --silent\" \"pnpm dlx wait-on tcp:127.0.0.1:6006 && yarn test-storybook\"",
+    "e2e": "playwright test",
+    "e2e:ui": "playwright test --ui",
+    "e2e:debug": "playwright test --debug",
+    "e2e:report": "playwright show-report",
+    "e2e:codegen": "playwright codegen"
   },
   "dependencies": {
     "date-fns": "^3.6.0",
@@ -29,6 +34,7 @@
   "devDependencies": {
     "@biomejs/biome": "^1.8.1",
     "@chromatic-com/storybook": "1.5.0",
+    "@playwright/test": "^1.44.1",
     "@storybook/addon-essentials": "^8.1.9",
     "@storybook/addon-interactions": "^8.1.9",
     "@storybook/addon-links": "^8.1.9",
