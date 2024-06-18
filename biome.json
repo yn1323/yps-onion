@@ -24,8 +24,8 @@
       },
       "nursery": {
         "useSortedClasses": {
-          "level": "error",
-          "fix": "unsafe",
+          "level": "warn",
+          "fix": "safe",
           "options": {
             "attributes": [""],
             "functions": ["tv"]

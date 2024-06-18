@@ -24,13 +24,15 @@
     "commands": [
       {
         "match": "\\.(ts|tsx)$",
-        "cmd": "pnpm dlx @biomejs/biome lint ${file} --apply-unsafe"
+        "cmd": "pnpm dlx @biomejs/biome lint ${file} --only=style/useSortedClasses"
       }
     ]
   },
   "cSpell.words": [
     "chromaui",
+    "docgen",
     "nextjs",
-    "supabase"
+    "supabase",
+    "viewports"
   ]
 }

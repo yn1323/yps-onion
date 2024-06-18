@@ -2,10 +2,7 @@ import type { StorybookConfig } from '@storybook/nextjs';
 import path from 'node:path';
 
 const config: StorybookConfig = {
-  stories: [
-    '../stories/**/*.mdx',
-    '../stories/**/*.stories.@(js|jsx|mjs|ts|tsx)',
-  ],
+  stories: ['../(app|components)/**/*.stories.@(ts|tsx)'],
   addons: [
     '@storybook/addon-onboarding',
     '@storybook/addon-links',
@@ -17,9 +14,12 @@ const config: StorybookConfig = {
     name: '@storybook/nextjs',
     options: {
       builder: {
-        useSWC: true, // Enables SWC support
+        useSWC: true,
       },
     },
+  },
+  typescript: {
+    reactDocgen: 'react-docgen',
   },
   staticDirs: ['../public'],
   webpackFinal: async (config) => {
