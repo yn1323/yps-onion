@@ -4,6 +4,7 @@
     "bradlc.vscode-tailwindcss",
     "streetsidesoftware.code-spell-checker",
     "ms-playwright.playwright",
-    "vitest.explorer"
+    "vitest.explorer",
+    "prisma.prisma"
   ]
 }

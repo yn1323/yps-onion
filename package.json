@@ -17,9 +17,12 @@
     "e2e:ui": "playwright test --ui",
     "e2e:debug": "playwright test --debug",
     "e2e:report": "playwright show-report",
-    "e2e:codegen": "playwright codegen"
+    "e2e:codegen": "playwright codegen",
+    "prisma": "prisma"
   },
   "dependencies": {
+    "@prisma/client": "^5.15.1",
+    "@supabase/supabase-js": "^2.43.5",
     "date-fns": "^3.6.0",
     "framer-motion": "^11.2.10",
     "jotai": "^2.8.3",
@@ -55,6 +58,7 @@
     "msw-storybook-addon": "^2.0.2",
     "playwright": "^1.44.1",
     "postcss": "^8.4.38",
+    "prisma": "^5.15.1",
     "scaffdog": "^4.0.0",
     "storybook": "^8.1.9",
     "tailwindcss": "^3.4.4",
