@@ -11,7 +11,7 @@
       "type": "shell",
       "command": "pnpm prisma migrate dev",
       "label": "マイグレート",
-      "detail": "prisma migrate dev"
+      "detail": "prisma migrate dev "
     },
     {
       "type": "shell",

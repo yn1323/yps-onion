@@ -1,0 +1,23 @@
+name: Chromatic
+description: Chromatic
+
+inputs:
+  SUPABASE_ACCESS_TOKEN:
+    description: 'supabase access token'
+    required: true
+  SUPABASE_PROJECT_ID:
+    description: 'project id'
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - uses: supabase/setup-cli@v1
+      with:
+        version: latest
+    - name: Database reset
+      run: supabase db reset --project-ref ${{ inputs.SUPABASE_PROJECT_ID }}
+      shell: bash
+      with:
+        SUPABASE_ACCESS_TOKEN: ${{ inputs.SUPABASE_ACCESS_TOKEN }}
+        PROJECT_ID: ${{ inputs.SUPABASE_PROJECT_ID }}
