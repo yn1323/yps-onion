@@ -5,6 +5,9 @@ inputs:
   DATABASE_URL:
     description: 'Database URL'
     required: true
+  DIRECT_URL:
+    description: 'Direct URL'
+    required: true
 
 runs:
   using: "composite"
@@ -12,3 +15,6 @@ runs:
     - name: Database reset
       shell: bash
       run: pnpm prisma db push --force-reset
+      with:
+        DATABASE_URL: ${{ inputs.DATABASE_URL }}
+        DIRECT_URL: ${{ inputs.DIRECT_URL }}

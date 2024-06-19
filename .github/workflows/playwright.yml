@@ -14,6 +14,9 @@ jobs:
       uses: ./.github/actions/setup
     - name: Dev Database Reset
       uses: ./.github/actions/dev-database
+      with:
+        DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        DIRECT_URL: ${{ secrets.DIRECT_URL }}
     - name: Setup Playwright
       uses: ./.github/actions/playwright
     - name: Playwright test
