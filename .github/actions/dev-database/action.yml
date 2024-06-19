@@ -15,6 +15,7 @@ runs:
     - name: Database reset
       shell: bash
       run: pnpm prisma db push --force-reset
-      with:
+      env:
         DATABASE_URL: ${{ inputs.DATABASE_URL }}
         DIRECT_URL: ${{ inputs.DIRECT_URL }}
+        
