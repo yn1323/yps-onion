@@ -1,9 +1,10 @@
 name: Playwright Tests
+
 on:
   push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+    branches:
+      - '*'
+      - '!main'
 
 jobs:
   test:
@@ -15,11 +16,8 @@ jobs:
         fetch-depth: 0
     - name: Setup
       uses: ./.github/actions/setup
-    - name: Supabase
-      uses: ./.github/actions/supabase
-      with:
-        SUPABASE_ACCESS_TOKEN: ${{ inputs.SUPABASE_ACCESS_TOKEN }}
-        PROJECT_ID: ${{ inputs.SUPABASE_PROJECT_ID }}
+    - name: Dev Database Reset
+      uses: ./.github/actions/dev-database
     - name: Setup Playwright
       uses: ./.github/actions/playwright
     - name: Playwright test

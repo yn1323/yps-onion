@@ -1,0 +1,14 @@
+name: Dev Database
+description: Dev Database
+
+inputs:
+  DATABASE_URL:
+    description: 'Database URL'
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: Database reset
+      shell: bash
+      run: pnpm prisma db push --force-reset
