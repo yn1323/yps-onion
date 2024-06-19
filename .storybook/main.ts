@@ -19,7 +19,10 @@ const config: StorybookConfig = {
     },
   },
   typescript: {
-    reactDocgen: 'react-docgen',
+    reactDocgen:
+      process.env.NODE_ENV === 'development'
+        ? 'react-docgen'
+        : 'react-docgen-typescript',
   },
   staticDirs: ['../public'],
   webpackFinal: async (config) => {
