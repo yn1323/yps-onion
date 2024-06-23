@@ -1,0 +1,29 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "type": "shell",
+      "command": "pnpm generate",
+      "label": "scaffolding",
+      "detail": "scaffdog"
+    },
+    {
+      "type": "shell",
+      "command": "pnpm prisma migrate dev",
+      "label": "マイグレート",
+      "detail": "prisma migrate dev "
+    },
+    {
+      "type": "shell",
+      "command": "pnpm prisma db seed",
+      "label": "Seedデータの追加",
+      "detail": "prisma db seed"
+    },
+    {
+      "type": "shell",
+      "command": "pnpm prisma migrate reset",
+      "label": "DBリセット",
+      "detail": "prisma migrate reset"
+    }
+  ]
+}

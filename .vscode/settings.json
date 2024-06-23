@@ -7,6 +7,7 @@
     "source.addMissingImports": "explicit",
     "source.organizeImports": "explicit"
   },
+  "[prisma]": { "editor.defaultFormatter": "Prisma.prisma"},
   // Tailwind Variantsの設定
   "tailwindCSS.experimental.classRegex": [
     ["tv\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"]
@@ -23,11 +24,15 @@
     "commands": [
       {
         "match": "\\.(ts|tsx)$",
-        "cmd": "pnpm dlx @biomejs/biome lint ${file} --apply-unsafe"
+        "cmd": "pnpm dlx @biomejs/biome lint ${file} --only=style/useSortedClasses"
       }
     ]
   },
   "cSpell.words": [
-    "chromaui"
+    "chromaui",
+    "docgen",
+    "nextjs",
+    "supabase",
+    "viewports"
   ]
 }

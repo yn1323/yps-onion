@@ -1,10 +1,16 @@
 import type { Preview } from '@storybook/react';
 import { initialize, mswDecorator } from 'msw-storybook-addon';
+import '../styles/globals.css';
 
 initialize();
 
 const preview: Preview = {
   parameters: {
+    options: {
+      storySort: {
+        order: ['atoms', 'forms', 'features', 'layouts', 'app'],
+      },
+    },
     nextjs: {
       appDirectory: true,
     },

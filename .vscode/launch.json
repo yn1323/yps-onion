@@ -6,6 +6,12 @@
       "name": "Run Dev Server",
       "request": "launch",
       "type": "node-terminal"
+    },
+    {
+      "command": "pnpm storybook",
+      "name": "Run Storybook Server",
+      "request": "launch",
+      "type": "node-terminal"
     }
   ]
 }
