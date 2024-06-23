@@ -17,6 +17,9 @@
     "enabled": true,
     "ignore": [".next", "node_modules"],
     "rules": {
+      "suspicious": {
+        "noArrayIndexKey": "off"
+      },
       "recommended": true,
       "correctness": {
         "noUnusedVariables": "error",
