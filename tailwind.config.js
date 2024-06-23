@@ -6,7 +6,11 @@ module.exports = {
     './styles/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
-    extend: {},
+    extend: {
+      borderRadius: {
+        normal: '0.5rem',
+      },
+    },
   },
   plugins: [],
 };
