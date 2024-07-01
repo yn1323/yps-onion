@@ -22,6 +22,7 @@
     "prisma": "prisma"
   },
   "dependencies": {
+    "@hookform/resolvers": "^3.6.0",
     "@prisma/client": "^5.15.1",
     "@supabase/supabase-js": "^2.43.5",
     "date-fns": "^3.6.0",
