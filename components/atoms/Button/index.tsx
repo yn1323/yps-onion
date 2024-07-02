@@ -8,7 +8,7 @@ const button = tv({
   variants: {
     color: {
       primary: 'bg-emerald-500 hover:bg-emerald-600',
-      secondary: 'bg-slate-200 text-gray-800 hover:bg-slate-300',
+      secondary: 'bg-slate-200 text-gray-700 hover:bg-slate-300',
     } as Record<ButtonColorTypes, string>,
     fullWidth: {
       true: 'w-full',

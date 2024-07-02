@@ -31,7 +31,7 @@
           "fix": "safe",
           "options": {
             "attributes": [""],
-            "functions": ["tv"]
+            "functions": ["tv", "twMerge"]
           }
         }
       },

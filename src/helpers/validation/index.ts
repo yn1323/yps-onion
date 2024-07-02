@@ -1,7 +1,6 @@
 import { z } from 'zod';
 
 export const required = (val: string, ctx: z.RefinementCtx) => {
-  console.log(val);
   if (!val.length) {
     ctx.addIssue({
       code: z.ZodIssueCode.custom,
@@ -26,6 +25,16 @@ export const minLength =
       ctx.addIssue({
         code: z.ZodIssueCode.custom,
         message: `最低${min}文字以上入力してください。`,
+      });
+    }
+  };
+
+export const betweenLength =
+  (min: number, max: number) => (val: string, ctx: z.RefinementCtx) => {
+    if (val.length < min || val.length > max) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: `${min}〜${max}文字で入力してください`,
       });
     }
   };
