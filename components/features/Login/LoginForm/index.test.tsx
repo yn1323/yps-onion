@@ -59,7 +59,6 @@ describe('LoginForm Components', () => {
       });
     });
   });
-
   describe('Password Error', () => {
     test('Required', async () => {
       render(<Basic />);
@@ -93,6 +92,18 @@ describe('LoginForm Components', () => {
       await waitFor(() => {
         expect(screen.queryByText('必須項目です')).not.toBeInTheDocument();
       });
+    });
+  });
+  describe('Link', () => {
+    test('New Registration', async () => {
+      render(<Basic />);
+      const link = screen.getByText('新規登録');
+      expect(link).toHaveAttribute('href', '/login/new');
+    });
+    test('Forget Password', async () => {
+      render(<Basic />);
+      const link = screen.getByText('パスワードを忘れた方');
+      expect(link).toHaveAttribute('href', '/login/forget');
     });
   });
 });
