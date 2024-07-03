@@ -1,8 +1,7 @@
 import { composeStories } from '@storybook/react';
 import { render, screen } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
-import { afterEach } from 'node:test';
-import { describe, test, vi } from 'vitest';
+import { afterEach, describe, test, vi } from 'vitest';
 import * as stories from './index.stories';
 
 const user = userEvent.setup();
