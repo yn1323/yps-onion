@@ -60,10 +60,15 @@ export const Input = ({
         placeholder={placeholder}
         maxLength={maxLength}
         aria-describedby={`${id}-説明文`}
+        aria-errormessage={`${id}-エラーメッセージ`}
         aria-invalid={!!errorMessage}
       />
       {description && <span id={`${id}-説明文`}>{description}</span>}
-      {errorMessage && <span className="text-red-500">{errorMessage}</span>}
+      {errorMessage && (
+        <span id={`${id}-エラーメッセージ`} className="text-red-500">
+          {errorMessage}
+        </span>
+      )}
     </div>
   );
 };
