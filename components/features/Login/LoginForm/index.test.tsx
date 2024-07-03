@@ -1,7 +1,14 @@
+import { LoginFormInner } from '@/components/features/Login/LoginForm';
+import { useLoginForm } from '@/components/features/Login/LoginForm/hooks';
 import { composeStories } from '@storybook/react';
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import {
+  fireEvent,
+  render,
+  renderHook,
+  screen,
+  waitFor,
+} from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
-import { beforeEach } from 'node:test';
 import { afterEach, describe, expect, test, vi } from 'vitest';
 import * as stories from './index.stories';
 
@@ -10,7 +17,6 @@ const user = userEvent.setup();
 const { Basic } = composeStories(stories);
 
 describe('LoginForm Components', () => {
-  beforeEach(() => {});
   afterEach(() => {
     vi.clearAllMocks();
   });
@@ -104,6 +110,33 @@ describe('LoginForm Components', () => {
       render(<Basic />);
       const link = screen.getByText('パスワードを忘れた方');
       expect(link).toHaveAttribute('href', '/login/forget');
+    });
+  });
+  describe('Submit', () => {
+    const onSubmitMock = vi.fn();
+    test('Submit validation', async () => {
+      const { result } = renderHook(() => useLoginForm());
+      render(
+        <LoginFormInner
+          methods={result.current.methods}
+          onSubmit={onSubmitMock}
+        />,
+      );
+      const submitButton = screen.getByText('メールアドレスでログイン');
+      await user.click(submitButton);
+      expect(onSubmitMock).not.toHaveBeenCalled();
+
+      const emailInput = screen.getByLabelText('メールアドレス');
+      const passwordInput = screen.getByLabelText('パスワード');
+      await user.type(emailInput, 'aaa@aaa.com');
+      await user.type(passwordInput, '0123456789');
+      await user.click(submitButton);
+
+      // react-hook-formの利用しない引数も含まれるためexpect.objectContaining, expect.arrayContainingで判定しない
+      expect(onSubmitMock.mock.calls[0][0]).toStrictEqual({
+        mail: 'aaa@aaa.com',
+        password: '0123456789',
+      });
     });
   });
 });

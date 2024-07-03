@@ -2,36 +2,20 @@
 
 import { Button } from '@/components/atoms/Button';
 import { Card } from '@/components/atoms/Card';
+import { useLoginForm } from '@/components/features/Login/LoginForm/hooks';
 import { Input } from '@/components/forms/Input';
-import {
-  PASSWORD_MAX_LENGTH,
-  PASSWORD_MIN_LENGTH,
-} from '@/src/constants/validations';
-import { betweenLength } from '@/src/helpers/validation';
-import { zodResolver } from '@hookform/resolvers/zod';
 import Link from 'next/link';
-import { FormProvider, useForm, type SubmitHandler } from 'react-hook-form';
+import { FormProvider } from 'react-hook-form';
 import { FcGoogle } from 'react-icons/fc';
-import { z } from 'zod';
-
-const Schema = z.object({
-  mail: z.string().min(1).max(100).email(),
-  password: z
-    .string()
-    .superRefine(betweenLength(PASSWORD_MIN_LENGTH, PASSWORD_MAX_LENGTH)),
-});
 
 export const LoginForm = () => {
-  type SchemaType = z.infer<typeof Schema>;
-  const methods = useForm<SchemaType>({
-    resolver: zodResolver(Schema),
-    mode: 'onBlur',
-  });
+  const formData = useLoginForm();
+  return <LoginFormInner {...formData} />;
+};
 
-  const onSubmit: SubmitHandler<SchemaType> = (data) => {
-    console.log(data);
-  };
+type Props = ReturnType<typeof useLoginForm>;
 
+export const LoginFormInner = ({ methods, onSubmit }: Props) => {
   return (
     <Card className="flex w-96 flex-col gap-5 p-8">
       <Button color="secondary" icon={<FcGoogle />}>
