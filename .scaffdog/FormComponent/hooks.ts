@@ -1,9 +1,9 @@
-import { Schema } from '@/components/features/Login/schema';
+import { Schema } from '@/components/{{ inputs.path }}/{{ inputs.component | pascal }}/schema';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm, type SubmitHandler } from 'react-hook-form';
 import type { z } from 'zod';
 
-export const useLoginForm = () => {
+export const use{{ inputs.component | pascal }} = () => {
   type SchemaType = z.infer<typeof Schema>;
   const methods = useForm<SchemaType>({
     resolver: zodResolver(Schema),
