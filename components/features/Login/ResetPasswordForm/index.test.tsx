@@ -1,5 +1,5 @@
-import { RegisterFormInner } from '@/components/features/Login/RegisterForm';
-import { useRegisterForm } from '@/components/features/Login/RegisterForm/hooks';
+import { ResetPasswordFormInner } from '@/components/features/Login/ResetPasswordForm';
+import { useResetPasswordForm } from '@/components/features/Login/ResetPasswordForm/hooks';
 import { composeStories } from '@storybook/react';
 import {
   fireEvent,
@@ -16,7 +16,7 @@ const user = userEvent.setup();
 
 const { Basic } = composeStories(stories);
 
-describe('RegisterForm Components', () => {
+describe('ResetPasswordForm Components', () => {
   afterEach(() => {
     vi.clearAllMocks();
   });
@@ -42,65 +42,27 @@ describe('RegisterForm Components', () => {
       });
     });
   });
-  describe('Password Error', () => {
-    test('Required', async () => {
-      render(<Basic />);
-      const passwordInput = screen.getByLabelText('パスワード');
-      fireEvent.focus(passwordInput);
-      fireEvent.blur(passwordInput);
-      expect(
-        await screen.findByText('8〜24文字で入力してください'),
-      ).toBeInTheDocument();
-    });
-    test('Max Length', async () => {
-      render(<Basic />);
-      const passwordInput = screen.getByLabelText('パスワード');
-      await user;
-      fireEvent.focus(passwordInput);
-      fireEvent.blur(passwordInput);
-      expect(
-        await screen.findByText('8〜24文字で入力してください'),
-      ).toBeInTheDocument();
-    });
-    test('Error to be removed', async () => {
-      render(<Basic />);
-      const passwordInput = screen.getByLabelText('パスワード');
-      fireEvent.focus(passwordInput);
-      fireEvent.blur(passwordInput);
-      expect(
-        await screen.findByText('8〜24文字で入力してください'),
-      ).toBeInTheDocument();
-      await user.type(passwordInput, 'aaaaaaaa');
-      fireEvent.blur(passwordInput);
-      await waitFor(() => {
-        expect(screen.queryByText('必須項目です')).not.toBeInTheDocument();
-      });
-    });
-  });
   describe('Submit', () => {
     const onSubmitMock = vi.fn();
     test('Submit validation', async () => {
-      const { result } = renderHook(() => useRegisterForm());
+      const { result } = renderHook(() => useResetPasswordForm());
       render(
-        <RegisterFormInner
+        <ResetPasswordFormInner
           methods={result.current.methods}
           onSubmit={onSubmitMock}
         />,
       );
-      const submitButton = screen.getByText('登録');
+      const submitButton = screen.getByText('パスワードリセット');
       await user.click(submitButton);
       expect(onSubmitMock).not.toHaveBeenCalled();
 
       const emailInput = screen.getByLabelText('メールアドレス');
-      const passwordInput = screen.getByLabelText('パスワード');
       await user.type(emailInput, 'aaa@aaa.com');
-      await user.type(passwordInput, '0123456789');
       await user.click(submitButton);
 
       // react-hook-formの利用しない引数も含まれるためexpect.objectContaining, expect.arrayContainingで判定しない
       expect(onSubmitMock.mock.calls[0][0]).toStrictEqual({
         mail: 'aaa@aaa.com',
-        password: '0123456789',
       });
     });
   });

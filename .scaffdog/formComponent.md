@@ -5,7 +5,6 @@ output: []
 ignore: []
 questions:
   component: "What is component name??"
-  name: "What is form name ??"
   path: "What is path??(i.e. features/Timeline)"
 ---
 
