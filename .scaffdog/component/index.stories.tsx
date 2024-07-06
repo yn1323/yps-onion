@@ -1,5 +1,5 @@
-import { type Meta, type StoryObj } from "@storybook/react";
-import { {{ inputs.component | pascal }}  } from ".";
+import type { Meta, StoryObj } from "@storybook/react";
+import { {{ inputs.component | pascal }} } from ".";
 
 const meta = {
   title: '{{ inputs.path }}/{{ inputs.component | pascal }}',
