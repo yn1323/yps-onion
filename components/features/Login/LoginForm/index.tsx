@@ -17,15 +17,7 @@ type Props = ReturnType<typeof useLoginForm>;
 
 export const LoginFormInner = ({ methods, onSubmit }: Props) => {
   return (
-    <Card className="flex w-96 flex-col gap-5 p-8">
-      <Button color="secondary" icon={<FcGoogle />}>
-        Googleでログイン
-      </Button>
-      <div className="-mx-2 flex items-center gap-6">
-        <hr className="grow" />
-        <span>or</span>
-        <hr className="grow" />
-      </div>
+    <Card className="flex w-96 flex-col gap-8 p-8">
       <FormProvider {...methods}>
         <form
           onSubmit={methods.handleSubmit(onSubmit)}
@@ -36,6 +28,14 @@ export const LoginFormInner = ({ methods, onSubmit }: Props) => {
           <Button type="submit">メールアドレスでログイン</Button>
         </form>
       </FormProvider>
+      <div className="-mx-2 flex items-center gap-6">
+        <hr className="grow" />
+        <span>or</span>
+        <hr className="grow" />
+      </div>
+      <Button color="secondary" icon={<FcGoogle />}>
+        Googleでログイン
+      </Button>
       <p className="flex w-full flex-col gap-2 text-right text-gray-500 text-sm">
         <Link className="hover:underline" href="/login/new">
           新規登録

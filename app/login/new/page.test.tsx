@@ -5,6 +5,6 @@ import * as stories from './page.stories';
 
 const { Basic } = composeStories(stories);
 
-test('/login', () => {
+test('/login/new', () => {
   render(<Basic />);
 });

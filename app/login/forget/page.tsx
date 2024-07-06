@@ -1,14 +1,14 @@
-import { LoginForm } from '@/components/features/Login/LoginForm';
+import { ResetPasswordForm } from '@/components/features/Login/ResetPasswordForm';
 import { Animation } from '@/components/layouts/Animation';
 import { Center } from '@/components/layouts/Center';
 
-const LoginPage = () => {
+const PasswordForgetPage = () => {
   return (
     <Animation>
       <Center>
-        <LoginForm />
+        <ResetPasswordForm />
       </Center>
     </Animation>
   );
 };
-export default LoginPage;
+export default PasswordForgetPage;

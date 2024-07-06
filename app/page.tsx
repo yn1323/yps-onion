@@ -1,13 +1,16 @@
-import { customErrorMap } from '@/src/helpers/validation/customErrorMap';
-import zod from 'zod';
+import Link from 'next/link';
 
 export const metadata = {
-  title: 'App Router',
+  title: 'YPS-Onion',
 };
 
 const MainPage = () => {
-  zod.setErrorMap(customErrorMap);
-  return <h1 className="border text-gray-500">App Router</h1>;
+  return (
+    <main>
+      <h1 className="border text-gray-500">YPS-Onion</h1>
+      <Link href="/login">ログイン</Link>
+    </main>
+  );
 };
 
 export default MainPage;
