@@ -16,6 +16,7 @@ export const LoginForm = () => {
 type Props = ReturnType<typeof useLoginForm>;
 
 export const LoginFormInner = ({ methods, onSubmit }: Props) => {
+  const isLoading = methods.formState.isSubmitting;
   return (
     <Card className="flex w-96 flex-col gap-8 p-8">
       <FormProvider {...methods}>
@@ -23,9 +24,16 @@ export const LoginFormInner = ({ methods, onSubmit }: Props) => {
           onSubmit={methods.handleSubmit(onSubmit)}
           className="flex flex-col gap-6"
         >
-          <Input label="メールアドレス" id="mail" />
-          <Input label="パスワード" type="password" id="password" />
-          <Button type="submit">メールアドレスでログイン</Button>
+          <Input label="メールアドレス" disabled={isLoading} id="mail" />
+          <Input
+            label="パスワード"
+            disabled={isLoading}
+            type="password"
+            id="password"
+          />
+          <Button type="submit" isLoading={isLoading}>
+            メールアドレスでログイン
+          </Button>
         </form>
       </FormProvider>
       <div className="-mx-2 flex items-center gap-6">

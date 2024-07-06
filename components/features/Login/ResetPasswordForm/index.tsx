@@ -15,6 +15,7 @@ export const ResetPasswordForm = () => {
 type Props = ReturnType<typeof useResetPasswordForm>;
 
 export const ResetPasswordFormInner = ({ methods, onSubmit }: Props) => {
+  const isLoading = methods.formState.isSubmitting;
   return (
     <Card className="flex w-96 flex-col gap-5 p-8">
       <FormProvider {...methods}>
@@ -22,8 +23,10 @@ export const ResetPasswordFormInner = ({ methods, onSubmit }: Props) => {
           onSubmit={methods.handleSubmit(onSubmit)}
           className="flex flex-col gap-6"
         >
-          <Input label="メールアドレス" id="mail" />
-          <Button type="submit">パスワードリセット</Button>
+          <Input label="メールアドレス" id="mail" disabled={isLoading} />
+          <Button type="submit" isLoading={isLoading}>
+            パスワードリセット
+          </Button>
         </form>
       </FormProvider>
       <p className="flex w-full flex-col gap-2 text-right text-gray-500 text-sm">

@@ -1,10 +1,11 @@
 import type { ButtonHTMLAttributes, ReactNode } from 'react';
+import { CgSpinner } from 'react-icons/cg';
 import { tv, type VariantProps } from 'tailwind-variants';
 
 type ButtonColorTypes = 'primary' | 'secondary';
 
 const button = tv({
-  base: 'flex items-center justify-center gap-2 rounded-md px-6 py-2 font-semibold text-sm text-white active:opacity-80',
+  base: 'flex h-9 min-w-fit items-center justify-center gap-2 rounded-md px-6 py-2 font-semibold text-sm text-white active:opacity-80',
   variants: {
     color: {
       primary: 'bg-emerald-500 hover:bg-emerald-600',
@@ -39,6 +40,7 @@ type Props = {
   disabled?: boolean;
   fullWidth?: boolean;
   icon?: ReactNode;
+  isLoading?: boolean;
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 
 export const Button = ({
@@ -47,18 +49,20 @@ export const Button = ({
   disabled = false,
   fullWidth = false,
   icon,
+  isLoading = false,
   type = 'button',
   onClick,
 }: Props) => {
   return (
     <button
-      className={button({ color, fullWidth, disabled })}
+      className={button({ color, fullWidth, disabled: disabled || isLoading })}
       type={type}
       onClick={disabled ? undefined : onClick}
-      disabled={disabled}
+      disabled={disabled || isLoading}
     >
-      {icon}
-      {children}
+      {!isLoading && icon}
+      {!isLoading && children}
+      {isLoading && <CgSpinner className="animate-spin text-lg" />}
     </button>
   );
 };

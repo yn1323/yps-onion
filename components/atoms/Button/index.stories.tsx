@@ -33,6 +33,7 @@ export const FullWidth: StoryObj<typeof meta> = {
 
 const Icons = [true, false] as const;
 const Disabled = [true, false] as const;
+const IsLoading = [true, false] as const;
 const Colors = ['primary', 'secondary'] as const;
 
 export const Patterns: StoryObj<typeof meta> = {
@@ -44,13 +45,18 @@ export const Patterns: StoryObj<typeof meta> = {
             {Colors.map((color, j) => (
               <div key={j} className="flex gap-2">
                 {Disabled.map((disabled, k) => (
-                  <Button
-                    key={k}
-                    {...args}
-                    icon={icon ? <FcGoogle /> : undefined}
-                    color={color}
-                    disabled={disabled}
-                  />
+                  <div key={k} className="flex gap-2">
+                    {IsLoading.map((isLoading, l) => (
+                      <Button
+                        key={l}
+                        {...args}
+                        icon={icon ? <FcGoogle /> : undefined}
+                        color={color}
+                        disabled={disabled}
+                        isLoading={isLoading}
+                      />
+                    ))}
+                  </div>
                 ))}
               </div>
             ))}

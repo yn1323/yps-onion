@@ -77,6 +77,69 @@ describe('RegisterForm Components', () => {
       });
     });
   });
+  describe('PasswordConfirmation Error', () => {
+    test('Required', async () => {
+      render(<Basic />);
+      const passwordInput = screen.getByLabelText('パスワード(確認)');
+      fireEvent.focus(passwordInput);
+      fireEvent.blur(passwordInput);
+      expect(
+        await screen.findByText('8〜24文字で入力してください'),
+      ).toBeInTheDocument();
+    });
+    test('Max Length', async () => {
+      render(<Basic />);
+      const passwordInput = screen.getByLabelText('パスワード');
+      await user;
+      fireEvent.focus(passwordInput);
+      fireEvent.blur(passwordInput);
+      expect(
+        await screen.findByText('8〜24文字で入力してください'),
+      ).toBeInTheDocument();
+    });
+    test('Error to be removed', async () => {
+      render(<Basic />);
+      const passwordInput = screen.getByLabelText('パスワード');
+      fireEvent.focus(passwordInput);
+      fireEvent.blur(passwordInput);
+      expect(
+        await screen.findByText('8〜24文字で入力してください'),
+      ).toBeInTheDocument();
+      await user.type(passwordInput, 'aaaaaaaa');
+      fireEvent.blur(passwordInput);
+      await waitFor(() => {
+        expect(screen.queryByText('必須項目です')).not.toBeInTheDocument();
+      });
+    });
+  });
+  describe('Password matching Error', () => {
+    test('Password matching Error', async () => {
+      render(<Basic />);
+      const passwordInput = screen.getByLabelText('パスワード');
+      const passwordConfirmationInput =
+        screen.getByLabelText('パスワード(確認)');
+      await user.type(passwordInput, '0123456789');
+      await user.type(passwordConfirmationInput, '012345678');
+      fireEvent.blur(passwordConfirmationInput);
+      expect(
+        await screen.findByText('パスワードが一致しません'),
+      ).toBeInTheDocument();
+    });
+    test('Error to be removed', async () => {
+      render(<Basic />);
+      const passwordInput = screen.getByLabelText('パスワード');
+      const passwordConfirmationInput =
+        screen.getByLabelText('パスワード(確認)');
+      await user.type(passwordInput, '0123456789');
+      await user.type(passwordConfirmationInput, '0123456789');
+      fireEvent.blur(passwordConfirmationInput);
+      await waitFor(() => {
+        expect(
+          screen.queryByText('パスワードが一致しません'),
+        ).not.toBeInTheDocument();
+      });
+    });
+  });
   describe('Submit', () => {
     const onSubmitMock = vi.fn();
     test('Submit validation', async () => {
@@ -93,14 +156,18 @@ describe('RegisterForm Components', () => {
 
       const emailInput = screen.getByLabelText('メールアドレス');
       const passwordInput = screen.getByLabelText('パスワード');
+      const passwordConfirmationInput =
+        screen.getByLabelText('パスワード(確認)');
       await user.type(emailInput, 'aaa@aaa.com');
       await user.type(passwordInput, '0123456789');
+      await user.type(passwordConfirmationInput, '0123456789');
       await user.click(submitButton);
 
       // react-hook-formの利用しない引数も含まれるためexpect.objectContaining, expect.arrayContainingで判定しない
       expect(onSubmitMock.mock.calls[0][0]).toStrictEqual({
         mail: 'aaa@aaa.com',
         password: '0123456789',
+        passwordConfirmation: '0123456789',
       });
     });
   });
