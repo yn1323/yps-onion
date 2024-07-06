@@ -114,12 +114,14 @@ describe('LoginForm Components', () => {
   });
   describe('Submit', () => {
     const onSubmitMock = vi.fn();
+    const onSubmitGoogleMock = vi.fn();
     test('Submit validation', async () => {
       const { result } = renderHook(() => useLoginForm());
       render(
         <LoginFormInner
           methods={result.current.methods}
           onSubmit={onSubmitMock}
+          onSubmitGoogle={onSubmitGoogleMock}
         />,
       );
       const submitButton = screen.getByText('メールアドレスでログイン');
