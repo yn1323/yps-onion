@@ -26,3 +26,7 @@ a {
   box-sizing: border-box;
 }
 
+*:focus {
+  outline: none;
+  @apply ring-2 ring-blue-500
+}
