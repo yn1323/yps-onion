@@ -12,7 +12,7 @@ export default defineConfig({
   test: {
     globals: true,
     environment: 'happy-dom',
-    exclude: ['node_modules', 'dist', 'e2e'],
+    exclude: ['node_modules', 'dist', 'e2e', '.scaffdog'],
     setupFiles: ['./src/configs/setup/vitest-setup.ts'],
   },
 });

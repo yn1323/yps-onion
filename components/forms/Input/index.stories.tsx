@@ -1,5 +1,4 @@
 import { Button } from '@/components/atoms/Button';
-import { required } from '@/src/helpers/validation';
 import { zodResolver } from '@hookform/resolvers/zod';
 import type { Meta, StoryObj } from '@storybook/react';
 import { userEvent, within } from '@storybook/test';
@@ -7,7 +6,7 @@ import { FormProvider, useForm, type SubmitHandler } from 'react-hook-form';
 import { z } from 'zod';
 import { Input } from '.';
 
-const ZOD_SCHEMA = z.string().superRefine(required);
+const ZOD_SCHEMA = z.string();
 
 const meta = {
   title: 'forms/Input',

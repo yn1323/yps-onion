@@ -52,7 +52,7 @@ describe('RegisterForm Components', () => {
           onSubmit={onSubmitMock}
         />,
       );
-      const submitButton = screen.getByText('メールアドレスでログイン');
+      const submitButton = screen.getByText('登録');
       await user.click(submitButton);
       expect(onSubmitMock).not.toHaveBeenCalled();
 
