@@ -52,8 +52,8 @@ importers:
         specifier: ^1.8.1
         version: 1.8.3
       '@chromatic-com/storybook':
-        specifier: 1.5.0
-        version: 1.5.0(react@18.3.1)
+        specifier: 1.6.1
+        version: 1.6.1(react@18.3.1)
       '@playwright/test':
         specifier: ^1.44.1
         version: 1.44.1
@@ -898,8 +898,8 @@ packages:
   '@bundled-es-modules/statuses@1.0.1':
     resolution: {integrity: sha512-yn7BklA5acgcBr+7w064fGV+SGIFySjCKpqjcWgBAIfrAkY+4GQTJJHQMeT3V/sgz23VTEVV8TtOmkvJAhFVfg==}
 
-  '@chromatic-com/storybook@1.5.0':
-    resolution: {integrity: sha512-LkLKv7SWu/6kGep1ft2HA1T/cm14wU0zoW71gE4cZRcgUoRQJtyhITFTLHrjqAxz6bVqNgqzQtd5oBZ2nK3L3g==}
+  '@chromatic-com/storybook@1.6.1':
+    resolution: {integrity: sha512-x1x1NB3j4xpfeSWKr96emc+7ZvfsvH+/WVb3XCjkB24PPbT8VZXb3mJSAQMrSzuQ8+eQE9kDogYHH9Fj3tb/Cw==}
     engines: {node: '>=16.0.0', yarn: '>=1.22.18'}
 
   '@colors/colors@1.5.0':
@@ -8088,7 +8088,7 @@ snapshots:
     dependencies:
       statuses: 2.0.1
 
-  '@chromatic-com/storybook@1.5.0(react@18.3.1)':
+  '@chromatic-com/storybook@1.6.1(react@18.3.1)':
     dependencies:
       chromatic: 11.5.4
       filesize: 10.1.2
