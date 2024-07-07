@@ -12,6 +12,12 @@
       "name": "Run Storybook Server",
       "request": "launch",
       "type": "node-terminal"
+    },
+    {
+      "command": "pnpm e2e:codegen",
+      "name": "Playwright Codegen",
+      "request": "launch",
+      "type": "node-terminal"
     }
   ]
 }
