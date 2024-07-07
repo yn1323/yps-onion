@@ -1,8 +1,10 @@
+import { composeStories } from '@storybook/react';
 import { render } from '@testing-library/react';
-import { expect, test } from 'vitest';
-import Page from './page';
+import { test } from 'vitest';
+import * as stories from './page.stories';
 
-test('Login', () => {
-  render(<Page />);
-  expect(true).toBeTruthy();
+const { Basic } = composeStories(stories);
+
+test('/login', () => {
+  render(<Basic />);
 });

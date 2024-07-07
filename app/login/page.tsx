@@ -1,4 +1,14 @@
+import { LoginForm } from '@/components/features/Login/LoginForm';
+import { Animation } from '@/components/layouts/Animation';
+import { Center } from '@/components/layouts/Center';
+
 const LoginPage = () => {
-  return <div className="text-gray-500">aaa</div>;
+  return (
+    <Animation>
+      <Center>
+        <LoginForm />
+      </Center>
+    </Animation>
+  );
 };
 export default LoginPage;

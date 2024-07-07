@@ -1,6 +1,5 @@
-import { Animation } from '@/components/layout/Animation'
-import { GetSelf } from '@/page/(auth)/auth/self/route'
-import { serverFetch } from '@/page/_src/api'
+import { Animation } from '@/components/layouts/Animation';
+import { Center } from '@/components/layouts/Center';
 
 async function initialize() {
   const { user } = await serverFetch<GetSelf>('/auth/self')
@@ -10,10 +9,14 @@ async function initialize() {
   return user
 }
 
-const {{ inputs.component | pascal }} = async () => {
+const {{ inputs.component | pascal }}Page = () => {
   await initialize()
-
-  return <Animation><div>main</div></Animation>;
+  return (
+    <Animation>
+      <Center>
+        <div>aaa</div>
+      </Center>
+    </Animation>
+  );
 };
-
-export default {{ inputs.component | pascal }};
+export default {{ inputs.component | pascal }}Page;

@@ -1,0 +1,21 @@
+{
+  "Tailwind Variants": {
+    "prefix": "tailwind-variants",
+    "body": [
+      "import { tv, type VariantProps } from 'tailwind-variants';",
+      "",
+      "",
+      "const $1 = tv({",
+      "  base: '',",
+      "  variants: {",
+      "    color: {",
+      "      primary: ''",
+      "    },",
+      "  },",
+      "  compoundVariants: [],",
+      "});",
+      "",
+      "type $2Variants = Required<VariantProps<typeof $1>>;"
+    ]
+  }
+}

@@ -6,7 +6,11 @@ module.exports = {
     './styles/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
-    extend: {},
+    extend: {
+      zIndex: {
+        toast: 1000,
+      },
+    },
   },
   plugins: [],
 };
