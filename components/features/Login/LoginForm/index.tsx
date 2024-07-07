@@ -44,14 +44,18 @@ export const LoginFormInner = ({ methods, onSubmit }: Props) => {
       <Button color="secondary" icon={<FcGoogle />}>
         Googleでログイン
       </Button>
-      <p className="flex w-full flex-col gap-2 text-right text-gray-500 text-sm">
-        <Link className="hover:underline" href="/login/new">
-          新規登録
-        </Link>
-        <Link className="hover:underline" href="/login/forget">
-          パスワードを忘れた方
-        </Link>
-      </p>
+      <div className="flex w-full flex-col gap-2 text-right text-gray-500 text-sm">
+        <div>
+          <Link className="hover:underline" href="/login/new">
+            新規登録
+          </Link>
+        </div>
+        <div>
+          <Link className="hover:underline" href="/login/forget">
+            パスワードを忘れた方
+          </Link>
+        </div>
+      </div>
     </Card>
   );
 };

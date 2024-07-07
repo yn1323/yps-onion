@@ -20,6 +20,9 @@
       "suspicious": {
         "noArrayIndexKey": "off"
       },
+      "complexity": {
+        "noForEach": "off"
+      },
       "recommended": true,
       "correctness": {
         "noUnusedVariables": "error",

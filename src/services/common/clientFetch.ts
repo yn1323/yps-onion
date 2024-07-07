@@ -3,11 +3,7 @@
 import type { RevalidateTagType } from '@/src/services/common/tags';
 
 const makePath = (path: string) => {
-  const scheme = process.env.NEXT_PUBLIC_IS_LOCAL ? 'http' : 'https';
-
-  const host = window.location.host;
-
-  return `${scheme}://${host}${path[0] === '/' ? '' : '/'}${path}`;
+  return `${location.origin}${path[0] === '/' ? '' : '/'}${path}`;
 };
 
 export type BaseFetch = {

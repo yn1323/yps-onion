@@ -1,3 +1,4 @@
+import { Toast } from '@/components/atoms/Toast';
 import { useLoginForm } from '@/components/features/Login/LoginForm/hooks';
 import type { Meta, StoryObj } from '@storybook/react';
 import { LoginForm } from '.';
@@ -8,7 +9,12 @@ const meta = {
   decorators: [
     (Story) => {
       const hooks = useLoginForm();
-      return <Story {...hooks} />;
+      return (
+        <>
+          <Story {...hooks} />
+          <Toast />
+        </>
+      );
     },
   ],
 } satisfies Meta<typeof LoginForm>;

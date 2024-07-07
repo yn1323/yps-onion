@@ -1,10 +1,15 @@
+import { useToast } from '@/components/atoms/Toast';
+import { login } from '@/components/features/Login/LoginForm/actions';
 import { Schema } from '@/components/features/Login/schema';
-import { supabase } from '@/src/constants/auth';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm, type SubmitHandler } from 'react-hook-form';
+import { useRouter } from 'next/navigation';
+import { type SubmitHandler, useForm } from 'react-hook-form';
 import type { z } from 'zod';
 
 export const useLoginForm = () => {
+  const { showToast } = useToast();
+  const router = useRouter();
+
   type SchemaType = z.infer<typeof Schema>;
   const methods = useForm<SchemaType>({
     resolver: zodResolver(Schema),
@@ -12,21 +17,21 @@ export const useLoginForm = () => {
   });
 
   const onSubmit: SubmitHandler<SchemaType> = async (data) => {
-    try {
-      const { error: signUpError } = await supabase.auth.signInWithPassword({
-        email: data.mail,
-        password: data.password,
-        options: {
-          emailRedirectTo: `${location.origin}/auth/callback`,
-        },
+    const result = await login({
+      email: data.mail,
+      password: data.password,
+    });
+
+    if (result.succeeded) {
+      showToast({
+        message: 'ログインに成功しました。',
       });
-      if (signUpError) {
-        throw signUpError;
-      }
-      alert('登録完了メールを確認してください');
-    } catch (e) {
-      console.error(e);
-      alert('エラーが発生しました');
+      router.push('/dashboard');
+    } else {
+      showToast({
+        type: 'error',
+        message: 'エラーが発生しました。再度時間をおいて試してください。',
+      });
     }
   };
 

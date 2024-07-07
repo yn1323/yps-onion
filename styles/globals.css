@@ -28,5 +28,9 @@ a {
 
 *:focus {
   outline: none;
+}
+
+button:focus, a:focus {
+  outline: none;
   @apply ring-2 ring-blue-500
 }

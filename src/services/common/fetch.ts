@@ -26,6 +26,7 @@ const baseFetch = async <T extends BaseFetch>(
   path: string,
   options?: T['requestOptions'],
   cookie = '',
+  // biome-ignore lint/complexity/noBannedTypes: <explanation>
 ): Promise<T['response'] | {}> => {
   const method = options?.method ?? 'GET';
   const query = options?.query ?? {};

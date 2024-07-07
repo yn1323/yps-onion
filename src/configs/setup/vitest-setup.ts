@@ -1,23 +1,13 @@
 import { customErrorMap } from '@/src/helpers/validation/customErrorMap';
 import '@testing-library/jest-dom';
+import { vi } from 'vitest';
 import zod from 'zod';
 
 zod.setErrorMap(customErrorMap);
 
-// import { cleanup } from '@testing-library/react';
-// import { afterAll, afterEach, beforeAll } from 'vitest';
-
-// import { server } from './mocks/node.js';
-
-// beforeAll(() => {
-//   server.listen();
-// });
-
-// afterEach(() => {
-//   server.resetHandlers();
-//   cleanup();
-// });
-
-// afterAll(() => {
-//   server.close();
-// });
+// Library mock
+vi.mock('next/navigation', () => ({
+  useRouter: () => ({
+    push: vi.fn(),
+  }),
+}));

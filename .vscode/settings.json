@@ -28,5 +28,12 @@
       }
     ]
   },
-  "cSpell.words": ["chromaui", "docgen", "nextjs", "supabase", "viewports"],
+  "cSpell.words": [
+    "chromaui",
+    "docgen",
+    "nextjs",
+    "Signup",
+    "supabase",
+    "viewports"
+  ],
 }

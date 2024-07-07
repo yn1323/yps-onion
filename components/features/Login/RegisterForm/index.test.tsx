@@ -1,4 +1,5 @@
 import { RegisterFormInner } from '@/components/features/Login/RegisterForm';
+import * as actions from '@/components/features/Login/RegisterForm/actions';
 import { useRegisterForm } from '@/components/features/Login/RegisterForm/hooks';
 import { composeStories } from '@storybook/react';
 import {
@@ -141,33 +142,79 @@ describe('RegisterForm Components', () => {
     });
   });
   describe('Submit', () => {
-    const onSubmitMock = vi.fn();
-    test('Submit validation', async () => {
-      const { result } = renderHook(() => useRegisterForm());
-      render(
-        <RegisterFormInner
-          methods={result.current.methods}
-          onSubmit={onSubmitMock}
-        />,
-      );
-      const submitButton = screen.getByText('登録');
-      await user.click(submitButton);
-      expect(onSubmitMock).not.toHaveBeenCalled();
+    describe('Validation', () => {
+      const onSubmitMock = vi.fn();
+      test('Submit validation', async () => {
+        const { result } = renderHook(() => useRegisterForm());
+        render(
+          <RegisterFormInner
+            methods={result.current.methods}
+            onSubmit={onSubmitMock}
+          />,
+        );
+        const submitButton = screen.getByText('登録');
+        await user.click(submitButton);
+        expect(onSubmitMock).not.toHaveBeenCalled();
 
-      const emailInput = screen.getByLabelText('メールアドレス');
-      const passwordInput = screen.getByLabelText('パスワード');
-      const passwordConfirmationInput =
-        screen.getByLabelText('パスワード(確認)');
-      await user.type(emailInput, 'aaa@aaa.com');
-      await user.type(passwordInput, '0123456789');
-      await user.type(passwordConfirmationInput, '0123456789');
-      await user.click(submitButton);
+        const emailInput = screen.getByLabelText('メールアドレス');
+        const passwordInput = screen.getByLabelText('パスワード');
+        const passwordConfirmationInput =
+          screen.getByLabelText('パスワード(確認)');
+        await user.type(emailInput, 'aaa@aaa.com');
+        await user.type(passwordInput, '0123456789');
+        await user.type(passwordConfirmationInput, '0123456789');
+        await user.click(submitButton);
 
-      // react-hook-formの利用しない引数も含まれるためexpect.objectContaining, expect.arrayContainingで判定しない
-      expect(onSubmitMock.mock.calls[0][0]).toStrictEqual({
-        mail: 'aaa@aaa.com',
-        password: '0123456789',
-        passwordConfirmation: '0123456789',
+        // react-hook-formの利用しない引数も含まれるためexpect.objectContaining, expect.arrayContainingで判定しない
+        expect(onSubmitMock.mock.calls[0][0]).toStrictEqual({
+          mail: 'aaa@aaa.com',
+          password: '0123456789',
+          passwordConfirmation: '0123456789',
+        });
+      });
+    });
+    describe('Signup Operation', () => {
+      test('Submit validation', async () => {
+        vi.spyOn(actions, 'signup').mockResolvedValue({
+          succeeded: true,
+          message: '',
+        });
+        render(<Basic />);
+        const submitButton = screen.getByText('登録');
+        const emailInput = screen.getByLabelText('メールアドレス');
+        const passwordInput = screen.getByLabelText('パスワード');
+        const passwordConfirmationInput =
+          screen.getByLabelText('パスワード(確認)');
+        await user.type(emailInput, 'aaa@aaa.com');
+        await user.type(passwordInput, '0123456789');
+        await user.type(passwordConfirmationInput, '0123456789');
+        await user.click(submitButton);
+        expect(
+          await screen.findByText(
+            '登録が完了しました。登録完了メールを確認してください。',
+          ),
+        ).toBeInTheDocument();
+      });
+      test('Signup Failed', async () => {
+        vi.spyOn(actions, 'signup').mockResolvedValue({
+          succeeded: false,
+          message: '',
+        });
+        render(<Basic />);
+        const submitButton = screen.getByText('登録');
+        const emailInput = screen.getByLabelText('メールアドレス');
+        const passwordInput = screen.getByLabelText('パスワード');
+        const passwordConfirmationInput =
+          screen.getByLabelText('パスワード(確認)');
+        await user.type(emailInput, 'aaa@aaa.com');
+        await user.type(passwordInput, '0123456789');
+        await user.type(passwordConfirmationInput, '0123456789');
+        await user.click(submitButton);
+        expect(
+          await screen.findByText(
+            'エラーが発生しました。再度時間をおいて試してください。',
+          ),
+        ).toBeInTheDocument();
       });
     });
   });

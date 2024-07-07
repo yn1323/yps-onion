@@ -10,6 +10,7 @@ import {
 } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
 import { afterEach, describe, expect, test, vi } from 'vitest';
+import * as actions from './actions';
 import * as stories from './index.stories';
 
 const user = userEvent.setup();
@@ -78,7 +79,7 @@ describe('LoginForm Components', () => {
     test('Max Length', async () => {
       render(<Basic />);
       const passwordInput = screen.getByLabelText('パスワード');
-      await user;
+      await userEvent.type(passwordInput, 'a'.repeat(25));
       fireEvent.focus(passwordInput);
       fireEvent.blur(passwordInput);
       expect(
@@ -113,31 +114,70 @@ describe('LoginForm Components', () => {
     });
   });
   describe('Submit', () => {
-    const onSubmitMock = vi.fn();
-    const onSubmitGoogleMock = vi.fn();
-    test('Submit validation', async () => {
-      const { result } = renderHook(() => useLoginForm());
-      render(
-        <LoginFormInner
-          methods={result.current.methods}
-          onSubmit={onSubmitMock}
-          onSubmitGoogle={onSubmitGoogleMock}
-        />,
-      );
-      const submitButton = screen.getByText('メールアドレスでログイン');
-      await user.click(submitButton);
-      expect(onSubmitMock).not.toHaveBeenCalled();
+    describe('Validation', () => {
+      const onSubmitMock = vi.fn();
+      test('Submit validation', async () => {
+        const { result } = renderHook(() => useLoginForm());
+        render(
+          <LoginFormInner
+            methods={result.current.methods}
+            onSubmit={onSubmitMock}
+          />,
+        );
+        const submitButton = screen.getByText('メールアドレスでログイン');
+        await user.click(submitButton);
+        expect(onSubmitMock).not.toHaveBeenCalled();
 
-      const emailInput = screen.getByLabelText('メールアドレス');
-      const passwordInput = screen.getByLabelText('パスワード');
-      await user.type(emailInput, 'aaa@aaa.com');
-      await user.type(passwordInput, '0123456789');
-      await user.click(submitButton);
+        const emailInput = screen.getByLabelText('メールアドレス');
+        const passwordInput = screen.getByLabelText('パスワード');
+        await user.type(emailInput, 'aaa@aaa.com');
+        await user.type(passwordInput, '0123456789');
+        await user.click(submitButton);
 
-      // react-hook-formの利用しない引数も含まれるためexpect.objectContaining, expect.arrayContainingで判定しない
-      expect(onSubmitMock.mock.calls[0][0]).toStrictEqual({
-        mail: 'aaa@aaa.com',
-        password: '0123456789',
+        // react-hook-formの利用しない引数も含まれるためexpect.objectContaining, expect.arrayContainingで判定しない
+        expect(onSubmitMock.mock.calls[0][0]).toStrictEqual({
+          mail: 'aaa@aaa.com',
+          password: '0123456789',
+        });
+      });
+    });
+    describe('Login Operation', () => {
+      test('Email Submit Success', async () => {
+        vi.spyOn(actions, 'login').mockResolvedValue({
+          succeeded: true,
+          message: '',
+        });
+        render(<Basic />);
+        const submitButton = screen.getByText('メールアドレスでログイン');
+        const emailInput = screen.getByLabelText('メールアドレス');
+        const passwordInput = screen.getByLabelText('パスワード');
+        await user.type(emailInput, 'aaa@aaa.com');
+        await user.type(passwordInput, '0123456789');
+        await user.click(submitButton);
+
+        expect(
+          await screen.findByText('ログインに成功しました。'),
+        ).toBeInTheDocument();
+      });
+
+      test('Email Submit Error', async () => {
+        vi.spyOn(actions, 'login').mockResolvedValue({
+          succeeded: false,
+          message: 'error',
+        });
+        render(<Basic />);
+        const submitButton = screen.getByText('メールアドレスでログイン');
+        const emailInput = screen.getByLabelText('メールアドレス');
+        const passwordInput = screen.getByLabelText('パスワード');
+        await user.type(emailInput, 'aaa@aaa.com');
+        await user.type(passwordInput, '0123456789');
+        await user.click(submitButton);
+
+        expect(
+          await screen.findByText(
+            'エラーが発生しました。再度時間をおいて試してください。',
+          ),
+        ).toBeInTheDocument();
       });
     });
   });

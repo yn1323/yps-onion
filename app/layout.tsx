@@ -1,3 +1,4 @@
+import { Toast } from '@/components/atoms/Toast';
 import { customErrorMap } from '@/src/helpers/validation/customErrorMap';
 import type { ReactNode } from 'react';
 import zod from 'zod';
@@ -13,6 +14,7 @@ const RootLayout = ({ children }: Props) => {
   return (
     <html lang="ja">
       <body className="h-screen">{children}</body>
+      <Toast />
     </html>
   );
 };

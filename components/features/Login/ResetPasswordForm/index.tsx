@@ -29,11 +29,13 @@ export const ResetPasswordFormInner = ({ methods, onSubmit }: Props) => {
           </Button>
         </form>
       </FormProvider>
-      <p className="flex w-full flex-col gap-2 text-right text-gray-500 text-sm">
-        <Link className="hover:underline" href="/login">
-          ログイン画面に戻る
-        </Link>
-      </p>
+      <div className="flex w-full flex-col gap-2 text-right text-gray-500 text-sm">
+        <div>
+          <Link className="hover:underline" href="/login">
+            ログイン画面に戻る
+          </Link>
+        </div>
+      </div>
     </Card>
   );
 };
