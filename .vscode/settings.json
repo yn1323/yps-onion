@@ -7,7 +7,7 @@
     "source.addMissingImports": "explicit",
     "source.organizeImports": "explicit"
   },
-  "[prisma]": { "editor.defaultFormatter": "Prisma.prisma"},
+  "[prisma]": { "editor.defaultFormatter": "Prisma.prisma" },
   // Tailwind Variantsの設定
   "tailwindCSS.experimental.classRegex": [
     ["tv\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"]
@@ -32,7 +32,8 @@
     "chromaui",
     "docgen",
     "nextjs",
+    "Signup",
     "supabase",
     "viewports"
-  ]
+  ],
 }

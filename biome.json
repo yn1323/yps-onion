@@ -17,6 +17,12 @@
     "enabled": true,
     "ignore": [".next", "node_modules"],
     "rules": {
+      "suspicious": {
+        "noArrayIndexKey": "off"
+      },
+      "complexity": {
+        "noForEach": "off"
+      },
       "recommended": true,
       "correctness": {
         "noUnusedVariables": "error",
@@ -28,7 +34,7 @@
           "fix": "safe",
           "options": {
             "attributes": [""],
-            "functions": ["tv"]
+            "functions": ["tv", "twMerge"]
           }
         }
       },

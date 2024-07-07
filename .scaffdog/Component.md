@@ -19,3 +19,9 @@ questions:
 ```tsx
 {{ "Component/index.tsx" | read }}
 ```
+
+# `{{ inputs.path }}/{{ inputs.component | pascal }}/index.test.tsx`
+
+```tsx
+{{ "Component/index.test.tsx" | read }}
+```

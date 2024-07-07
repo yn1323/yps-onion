@@ -14,10 +14,9 @@ jobs:
           fetch-depth: 0
       - name: Setup
         uses: ./.github/actions/setup
-      - name: Setup Playwright
-        uses: ./.github/actions/playwright
-      - name: StorybookTest
-        uses: ./.github/actions/storybook_test
+      - name: Build storybook
+        shell: bash
+        run: pnpm build-storybook
       - name: Chromatic
         uses: ./.github/actions/chromatic
         with:
