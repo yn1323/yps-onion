@@ -1,3 +1,4 @@
+import { Toast } from '@/components/atoms/Toast';
 import { useResetPasswordForm } from '@/components/features/Login/ResetPasswordForm/hooks';
 import type { Meta, StoryObj } from '@storybook/react';
 import { ResetPasswordForm } from '.';
@@ -8,7 +9,12 @@ const meta = {
   decorators: [
     (Story) => {
       const hooks = useResetPasswordForm();
-      return <Story {...hooks} />;
+      return (
+        <>
+          <Story {...hooks} />
+          <Toast />
+        </>
+      );
     },
   ],
 } satisfies Meta<typeof ResetPasswordForm>;
