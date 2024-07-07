@@ -17,7 +17,6 @@ export type BaseFetch = {
     cache?: RequestInit['cache'];
     next?: {
       tags?: RevalidateTagType[];
-      revalidate?: NextFetchRequestConfig['revalidate'];
     };
   };
 };

@@ -14,7 +14,6 @@ export type BaseFetch = {
     query?: Record<string, any>;
     next?: {
       tags?: RevalidateTagType[];
-      revalidate?: NextFetchRequestConfig['revalidate'];
     };
   };
 };
