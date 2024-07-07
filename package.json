@@ -1,6 +1,7 @@
 {
   "private": true,
   "type": "module",
+  "packageManager": "pnpm@9.3.0",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -40,7 +41,7 @@
     "zod": "3.23.8"
   },
   "devDependencies": {
-    "@biomejs/biome": "1.8.1",
+    "@biomejs/biome": "1.8.3",
     "@playwright/test": "1.44.1",
     "@storybook/addon-a11y": "8.1.10",
     "@storybook/addon-essentials": "8.1.9",
@@ -63,7 +64,7 @@
     "msw": "2.3.1",
     "msw-storybook-addon": "2.0.2",
     "playwright": "1.44.1",
-    "postcss": "8.4.38",
+    "postcss": "8.4.39",
     "prisma": "5.15.1",
     "scaffdog": "4.0.0",
     "storybook": "8.1.9",
