@@ -4,6 +4,9 @@ on: push
 
 jobs:
   test:
+    env:
+      NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+      NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
     timeout-minutes: 60
     runs-on: ubuntu-latest
     steps:
@@ -21,9 +24,6 @@ jobs:
       uses: ./.github/actions/playwright
     - name: Playwright test
       run: pnpm e2e
-      with:
-        NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
-        NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
     - uses: actions/upload-artifact@v4
       if: always()
       with:
