@@ -4,7 +4,6 @@ description: Playwright setup from cache
 runs:
   using: 'composite'
   steps:
-    - uses: maxmilton/action-setup-playwright@v1
-      with:
-        browsers: chromium
-        headless: true
+    - name: Install Playwright
+      shell: bash
+      run: pnpm exec playwright install --with-deps
