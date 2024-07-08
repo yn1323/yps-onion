@@ -1,10 +1,7 @@
 import { defineConfig, devices } from '@playwright/test';
+import dotenv from 'dotenv';
 
-/**
- * Read environment variables from file.
- * https://github.com/motdotla/dotenv
- */
-// require('dotenv').config();
+dotenv.config();
 
 /**
  * See https://playwright.dev/docs/test-configuration.
@@ -18,13 +15,17 @@ export default defineConfig({
   /* Retry on CI only */
   retries: process.env.CI ? 2 : 0,
   /* Opt out of parallel tests on CI. */
-  workers: process.env.CI ? 1 : undefined,
+  workers: process.env.CI ? 2 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: 'html',
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
+  timeout: 5 * 60 * 1000,
+  expect: {
+    timeout: 10 * 1000,
+  },
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
-    baseURL: 'http://127.0.0.1:3010',
+    baseURL: process.env.CI ? process.env.DEV_URL : 'http://127.0.0.1:3010',
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
@@ -72,6 +73,6 @@ export default defineConfig({
   webServer: {
     command: 'pnpm dev -p 3010',
     url: 'http://127.0.0.1:3010',
-    reuseExistingServer: !process.env.CI,
+    reuseExistingServer: !process.env.G_TOKEN,
   },
 });
