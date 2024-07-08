@@ -15,7 +15,6 @@ jobs:
       - name: Setup
         uses: ./.github/actions/setup
       - name: Build storybook
-        shell: bash
         run: pnpm build-storybook
       - name: Chromatic
         uses: ./.github/actions/chromatic
