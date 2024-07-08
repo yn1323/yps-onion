@@ -1,4 +1,6 @@
 {
+  "name": "yps-onion",
+  "version": "0.0.1",
   "private": true,
   "type": "module",
   "packageManager": "pnpm@9.3.0",
