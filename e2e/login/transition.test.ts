@@ -5,7 +5,6 @@ import { describe } from 'node:test';
 
 describe('Login Page Transition', () => {
   test('Transition', async ({ page }) => {
-    console.log(process.env.DEV_URL);
     await page.goto('/');
     await page.getByRole('link', { name: 'ログイン' }).click();
     await page.getByRole('link', { name: '新規登録' }).click();

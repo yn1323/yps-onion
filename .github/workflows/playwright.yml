@@ -7,6 +7,7 @@ jobs:
     env:
       NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
       NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
+      DEV_URL: ${{ secrets.DEV_URL }}
     timeout-minutes: 60
     runs-on: ubuntu-latest
     steps:
