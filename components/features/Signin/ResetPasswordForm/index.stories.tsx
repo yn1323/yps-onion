@@ -1,5 +1,5 @@
 import { Toast } from '@/components/atoms/Toast';
-import { useResetPasswordForm } from '@/components/features/Login/ResetPasswordForm/hooks';
+import { useResetPasswordForm } from '@/components/features/Signin/ResetPasswordForm/hooks';
 import type { Meta, StoryObj } from '@storybook/react';
 import { ResetPasswordForm } from '.';
 

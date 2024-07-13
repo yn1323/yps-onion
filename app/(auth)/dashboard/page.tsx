@@ -1,4 +1,4 @@
-import { LogoutButton } from '@/components/features/Logout/LogoutButton';
+import { SignoutButton } from '@/components/features/Signout/SignoutButton';
 import { Animation } from '@/components/layouts/Animation';
 import { Center } from '@/components/layouts/Center';
 
@@ -7,7 +7,7 @@ const DashboardPage = () => {
     <Animation>
       <Center>
         <div>this is Dashboard {process.cwd()}</div>
-        <LogoutButton />
+        <SignoutButton />
       </Center>
     </Animation>
   );

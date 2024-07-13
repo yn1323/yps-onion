@@ -1,12 +1,12 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { LogoutButton } from ".";
+import { SignoutButton } from ".";
 
 const meta = {
-  title: 'features/Logout/LogoutButton',
-  component: LogoutButton ,
+  title: 'features/Signout/SignoutButton',
+  component: SignoutButton ,
   args: {},
   parameters: {},
-} satisfies Meta<typeof LogoutButton >;
+} satisfies Meta<typeof SignoutButton >;
 export default meta;
 
 export const Basic: StoryObj<typeof meta> = {};

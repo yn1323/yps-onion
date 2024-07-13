@@ -2,20 +2,20 @@
 
 import { Button } from '@/components/atoms/Button';
 import { Card } from '@/components/atoms/Card';
-import { useLoginForm } from '@/components/features/Login/LoginForm/hooks';
+import { useSigninForm } from '@/components/features/Signin/SigninForm/hooks';
 import { Input } from '@/components/forms/Input';
 import Link from 'next/link';
 import { FormProvider } from 'react-hook-form';
 import { FcGoogle } from 'react-icons/fc';
 
-export const LoginForm = () => {
-  const formData = useLoginForm();
-  return <LoginFormInner {...formData} />;
+export const SigninForm = () => {
+  const formData = useSigninForm();
+  return <SigninFormInner {...formData} />;
 };
 
-type Props = ReturnType<typeof useLoginForm>;
+type Props = ReturnType<typeof useSigninForm>;
 
-export const LoginFormInner = ({ methods, onSubmit }: Props) => {
+export const SigninFormInner = ({ methods, onSubmit }: Props) => {
   const isLoading = methods.formState.isSubmitting;
   return (
     <Card className="flex w-96 flex-col gap-8 p-8">
@@ -46,12 +46,12 @@ export const LoginFormInner = ({ methods, onSubmit }: Props) => {
       </Button>
       <div className="flex w-full flex-col gap-2 text-right text-gray-500 text-sm">
         <div>
-          <Link className="hover:underline" href="/login/new">
+          <Link className="hover:underline" href="/Signin/new">
             新規登録
           </Link>
         </div>
         <div>
-          <Link className="hover:underline" href="/login/forget">
+          <Link className="hover:underline" href="/Signin/forget">
             パスワードを忘れた方
           </Link>
         </div>
