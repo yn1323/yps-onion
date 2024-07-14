@@ -2,11 +2,11 @@ import { ResetPasswordFormInner } from '@/components/features/Signin/ResetPasswo
 import { useResetPasswordForm } from '@/components/features/Signin/ResetPasswordForm/hooks';
 import { composeStories } from '@storybook/react';
 import {
-    fireEvent,
-    render,
-    renderHook,
-    screen,
-    waitFor,
+  fireEvent,
+  render,
+  renderHook,
+  screen,
+  waitFor,
 } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
 import { afterEach, describe, expect, test, vi } from 'vitest';
@@ -68,7 +68,13 @@ describe('ResetPasswordForm Components', () => {
         });
       });
     });
-
+    describe('Link', () => {
+      test('Back to Login', async () => {
+        render(<Basic />);
+        const link = screen.getByText('ログイン画面に戻る');
+        expect(link).toHaveAttribute('href', '/login');
+      });
+    });
     describe('Signup Operation', () => {
       test('Submit validation', async () => {
         vi.spyOn(actions, 'resetPassword').mockResolvedValue({

@@ -141,6 +141,13 @@ describe('SignupForm Components', () => {
       });
     });
   });
+  describe('Link', () => {
+    test('Back to Login', async () => {
+      render(<Basic />);
+      const link = screen.getByText('ログイン画面に戻る');
+      expect(link).toHaveAttribute('href', '/login/');
+    });
+  });
   describe('Submit', () => {
     describe('Validation', () => {
       const onSubmitMock = vi.fn();
