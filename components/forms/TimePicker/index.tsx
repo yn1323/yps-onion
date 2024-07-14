@@ -16,24 +16,23 @@ const timePicker = tv({
       false: 'border-gray-200',
     },
   },
-  compoundVariants: [],
 });
 
 type Props = {
   description?: string;
   label?: string;
 } & Partial<
-  Pick<HTMLInputElement, 'disabled' | 'id' | 'placeholder' | 'min' | 'max'>
+  Pick<HTMLInputElement, 'disabled' | 'id' | 'placeholder' | 'max' | 'min'>
 >;
 
 export const TimePicker = ({
   description,
   label,
   disabled = false,
-  id = 'id',
+  id = 'TimePicker',
   placeholder,
-  min,
   max,
+  min,
 }: Props) => {
   const {
     register,
@@ -45,20 +44,23 @@ export const TimePicker = ({
     [id, errors[id]?.message],
   );
 
+  console.log(register(id));
+
   return (
     <div className="flex flex-col">
       {label && <label htmlFor={id}>{label}</label>}
       <input
         className={timePicker({ disabled, error: !!errorMessage })}
         {...register(id)}
+        id={id}
         type="time"
         disabled={disabled}
         placeholder={placeholder}
         aria-describedby={`${id}-説明文`}
         aria-errormessage={`${id}-エラーメッセージ`}
         aria-invalid={!!errorMessage}
-        min={min}
         max={max}
+        min={min}
       />
 
       {description && <span id={`${id}-説明文`}>{description}</span>}

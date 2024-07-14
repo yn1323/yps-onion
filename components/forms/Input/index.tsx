@@ -16,7 +16,6 @@ const input = tv({
       false: 'border-gray-200',
     },
   },
-  compoundVariants: [],
 });
 
 type Props = {
@@ -54,6 +53,7 @@ export const Input = ({
       <input
         className={input({ disabled, error: !!errorMessage })}
         {...register(id)}
+        id={id}
         type={type}
         disabled={disabled}
         placeholder={placeholder}

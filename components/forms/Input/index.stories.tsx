@@ -17,10 +17,11 @@ const meta = {
     disabled: false,
     placeholder: 'Enter text here',
     label: 'Input Label',
+    id: 'input',
   },
   decorators: [
     (Story, { args }) => {
-      const id = 'input';
+      const id = args.id ?? '';
       const Schema = z.object({ [id]: ZOD_SCHEMA });
       type SchemaType = z.infer<typeof Schema>;
       const methods = useForm<SchemaType>({
