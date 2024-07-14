@@ -1,11 +1,11 @@
 'use client';
 
 import { Button } from '@/components/atoms/Button';
-import { logout } from '@/components/features/Logout/LogoutButton/actions';
+import { signout } from '@/components/features/Signout/SignoutButton/actions';
 import { useRouter } from 'next/navigation';
 import { useTransition } from 'react';
 
-export const LogoutButton = () => {
+export const SignoutButton = () => {
   const [isPending, startTransition] = useTransition();
   const router = useRouter();
 
@@ -13,7 +13,7 @@ export const LogoutButton = () => {
     <Button
       onClick={() => {
         startTransition(async () => {
-          await logout();
+          await signout();
           router.push('/');
         });
       }}

@@ -1,12 +1,12 @@
 import { useToast } from '@/components/atoms/Toast';
-import { login } from '@/components/features/Login/LoginForm/actions';
-import { Schema } from '@/components/features/Login/schema';
+import { signin } from '@/components/features/Signin/SigninForm/actions';
+import { Schema } from '@/components/features/Signin/schema';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/navigation';
 import { type SubmitHandler, useForm } from 'react-hook-form';
 import type { z } from 'zod';
 
-export const useLoginForm = () => {
+export const useSigninForm = () => {
   const { showToast } = useToast();
   const router = useRouter();
 
@@ -17,7 +17,7 @@ export const useLoginForm = () => {
   });
 
   const onSubmit: SubmitHandler<SchemaType> = async (data) => {
-    const result = await login({
+    const result = await signin({
       email: data.mail,
       password: data.password,
     });

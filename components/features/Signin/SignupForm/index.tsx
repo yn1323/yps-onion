@@ -2,19 +2,19 @@
 
 import { Button } from '@/components/atoms/Button';
 import { Card } from '@/components/atoms/Card';
-import { useRegisterForm } from '@/components/features/Login/RegisterForm/hooks';
+import { useSignupForm } from '@/components/features/Signin/SignupForm/hooks';
 import { Input } from '@/components/forms/Input';
 import Link from 'next/link';
 import { FormProvider } from 'react-hook-form';
 
-export const RegisterForm = () => {
-  const formData = useRegisterForm();
-  return <RegisterFormInner {...formData} />;
+export const SignupForm = () => {
+  const formData = useSignupForm();
+  return <SignupFormInner {...formData} />;
 };
 
-type Props = ReturnType<typeof useRegisterForm>;
+type Props = ReturnType<typeof useSignupForm>;
 
-export const RegisterFormInner = ({ methods, onSubmit }: Props) => {
+export const SignupFormInner = ({ methods, onSubmit }: Props) => {
   const isLoading = methods.formState.isSubmitting;
   return (
     <Card className="flex w-96 flex-col gap-5 p-8">

@@ -1,6 +1,6 @@
 import { useToast } from '@/components/atoms/Toast';
-import { resetPassword } from '@/components/features/Login/ResetPasswordForm/actions';
-import { Schema as LoginSchema } from '@/components/features/Login/schema';
+import { resetPassword } from '@/components/features/Signin/ResetPasswordForm/actions';
+import { Schema as LoginSchema } from '@/components/features/Signin/schema';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { type SubmitHandler, useForm } from 'react-hook-form';
 import type { z } from 'zod';

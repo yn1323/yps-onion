@@ -1,0 +1,11 @@
+{
+  "autoAcceptChanges": "main",
+  "exitOnceUploaded": true,
+  "exitZeroOnChanges": true,
+  "onlyChanged": true,
+  "projectId": "Project:669321865159b196bb97d81d",
+  "storybookBaseDir": "./",
+  "storybookConfigDir": ".storybook",
+  "untraced": ["package.json", "package-lock.json"],
+  "zip": true
+}

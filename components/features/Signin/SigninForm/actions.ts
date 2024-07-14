@@ -2,10 +2,18 @@
 
 import { createClient } from '@/src/configs/supabase/server';
 
-export const logout = async () => {
+export const signin = async ({
+  email,
+  password,
+}: { email: string; password: string }) => {
   const supabase = createClient();
 
-  const { error } = await supabase.auth.signOut();
+  const data = {
+    email,
+    password,
+  };
+
+  const { error } = await supabase.auth.signInWithPassword(data);
 
   if (error) {
     console.log(error.message);

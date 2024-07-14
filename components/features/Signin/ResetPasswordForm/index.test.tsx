@@ -1,12 +1,12 @@
-import { ResetPasswordFormInner } from '@/components/features/Login/ResetPasswordForm';
-import { useResetPasswordForm } from '@/components/features/Login/ResetPasswordForm/hooks';
+import { ResetPasswordFormInner } from '@/components/features/Signin/ResetPasswordForm';
+import { useResetPasswordForm } from '@/components/features/Signin/ResetPasswordForm/hooks';
 import { composeStories } from '@storybook/react';
 import {
-  fireEvent,
-  render,
-  renderHook,
-  screen,
-  waitFor,
+    fireEvent,
+    render,
+    renderHook,
+    screen,
+    waitFor,
 } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
 import { afterEach, describe, expect, test, vi } from 'vitest';

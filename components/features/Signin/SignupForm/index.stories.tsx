@@ -1,14 +1,14 @@
 import { Toast } from '@/components/atoms/Toast';
-import { useRegisterForm } from '@/components/features/Login/RegisterForm/hooks';
+import { useSignupForm } from '@/components/features/Signin/SignupForm/hooks';
 import type { Meta, StoryObj } from '@storybook/react';
-import { RegisterForm } from '.';
+import { SignupForm } from '.';
 
 const meta = {
-  title: 'features/Login/RegisterForm',
-  component: RegisterForm,
+  title: 'features/Login/SignupForm',
+  component: SignupForm,
   decorators: [
     (Story) => {
-      const hooks = useRegisterForm();
+      const hooks = useSignupForm();
       return (
         <>
           <Story {...hooks} />
@@ -17,7 +17,7 @@ const meta = {
       );
     },
   ],
-} satisfies Meta<typeof RegisterForm>;
+} satisfies Meta<typeof SignupForm>;
 export default meta;
 
 export const Basic: StoryObj<typeof meta> = {};
