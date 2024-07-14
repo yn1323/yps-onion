@@ -9,3 +9,32 @@ export const betweenLength =
       });
     }
   };
+
+export const time = (step?: number) => (val: string, ctx: z.RefinementCtx) => {
+  if (!val || val.length !== 5 || !val.includes(':')) {
+    ctx.addIssue({
+      code: z.ZodIssueCode.custom,
+      message: '時刻を入力してください',
+    });
+    return;
+  }
+  const [hour, minute] = val.split(':').map(Number);
+
+  if (hour < 0 || hour > 23 || minute < 0 || minute > 59) {
+    ctx.addIssue({
+      code: z.ZodIssueCode.custom,
+      message: '時刻を入力してください',
+    });
+    return;
+  }
+
+  if (step) {
+    if (minute % step !== 0) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: `${step}分単位で入力してください`,
+      });
+      return;
+    }
+  }
+};

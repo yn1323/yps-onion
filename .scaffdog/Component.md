@@ -5,7 +5,7 @@ output: []
 ignore: []
 questions:
   component: "What is component name??"
-  path: "What is path??(i.e. feature/Timeline)"
+  path: "What is path??(i.e. features/Timeline)"
 ---
 
 # `{{ inputs.path }}/{{ inputs.component | pascal }}/index.stories.tsx`

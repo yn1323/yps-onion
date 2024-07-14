@@ -4,29 +4,28 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { userEvent, within } from '@storybook/test';
 import { FormProvider, type SubmitHandler, useForm } from 'react-hook-form';
 import { z } from 'zod';
-import { Input } from '.';
+import { TimePicker } from '.';
 
-const ZOD_SCHEMA = z.string().min(1);
-
+const ZOD_SCHEMA = z.string();
 const meta = {
-  title: 'forms/Input',
-  component: Input,
+  title: 'forms/TimePicker',
+  component: TimePicker,
   args: {
-    type: 'text',
-    maxLength: 20,
     disabled: false,
     placeholder: 'Enter text here',
-    label: 'Input Label',
+    label: 'TimePicker Label',
   },
   decorators: [
     (Story, { args }) => {
-      const id = 'input';
+      const id = 'TimePicker';
       const Schema = z.object({ [id]: ZOD_SCHEMA });
       type SchemaType = z.infer<typeof Schema>;
       const methods = useForm<SchemaType>({
         resolver: zodResolver(Schema),
       });
-      const onSubmit: SubmitHandler<SchemaType> = () => {};
+      const onSubmit: SubmitHandler<SchemaType> = (d) => {
+        console.log(d);
+      };
 
       return (
         <FormProvider {...methods}>
@@ -35,20 +34,20 @@ const meta = {
             className="flex flex-col gap-6"
           >
             <Story {...args} label="Basic" />
-            <Story {...args} disabled label="Disabled" />
+            {/* <Story {...args} disabled label="Disabled" />
             <Story
               {...args}
               label="Description"
               description="Description......."
             />
-            <Story {...args} label="Required" />
+            <Story {...args} label="Required" /> */}
             <Button type="submit">Submit</Button>
           </form>
         </FormProvider>
       );
     },
   ],
-} satisfies Meta<typeof Input>;
+} satisfies Meta<typeof TimePicker>;
 export default meta;
 
 export const Basic: StoryObj<typeof meta> = {};
