@@ -32,8 +32,10 @@
     "chromaui",
     "docgen",
     "nextjs",
+    "signout",
     "Signup",
     "supabase",
+    "textbox",
     "viewports"
   ],
 }

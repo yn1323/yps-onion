@@ -1,4 +1,4 @@
-import { ResetPasswordForm } from '@/components/features/Login/ResetPasswordForm';
+import { ResetPasswordForm } from '@/components/features/Signin/ResetPasswordForm';
 import { Animation } from '@/components/layouts/Animation';
 import { Center } from '@/components/layouts/Center';
 

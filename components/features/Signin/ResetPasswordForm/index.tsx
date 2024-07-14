@@ -2,7 +2,7 @@
 
 import { Button } from '@/components/atoms/Button';
 import { Card } from '@/components/atoms/Card';
-import { useResetPasswordForm } from '@/components/features/Login/ResetPasswordForm/hooks';
+import { useResetPasswordForm } from '@/components/features/Signin/ResetPasswordForm/hooks';
 import { Input } from '@/components/forms/Input';
 import Link from 'next/link';
 import { FormProvider } from 'react-hook-form';

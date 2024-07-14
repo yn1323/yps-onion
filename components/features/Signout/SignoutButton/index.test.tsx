@@ -5,7 +5,7 @@ import * as stories from './index.stories';
 
 const { Basic } = composeStories(stories);
 
-describe('LogoutButton Components', () => {
+describe('SignoutButton Components', () => {
   test('Basic', async () => {
     render(<Basic />);
   });

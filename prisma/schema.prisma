@@ -58,6 +58,7 @@ model Shop {
   announce        Announce[]
   isDeleted       Boolean
   createdAt       DateTime                    @default(now())
+  Invitation      Invitation[]
 }
 
 model User {
@@ -67,6 +68,7 @@ model User {
   avatar        String
   role          String
   email         String
+  isSignedUp    Boolean
   shop          ShopUserBelonging[]
   stableShift   StableShift[]
   unstableShift UnstableShift[]
@@ -74,6 +76,19 @@ model User {
   timeCard      TimeCard[]
   isDeleted     Boolean
   createdAt     DateTime            @default(now())
+  Invitation    Invitation[]
+}
+
+model Invitation {
+  id              String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  invitedBy       Shop     @relation(fields: [invitedByShopId], references: [id])
+  invitedByShopId String   @db.Uuid
+  targetUser      User     @relation(fields: [targetUserId], references: [id])
+  targetUserId    String   @db.Uuid
+  accepted        Boolean
+  isDeleted       Boolean
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
 }
 
 model Operation {

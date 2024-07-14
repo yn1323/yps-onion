@@ -1,8 +1,8 @@
 'use client';
 
 import { useToast } from '@/components/atoms/Toast';
-import { signup } from '@/components/features/Login/RegisterForm/actions';
-import { Schema as LoginSchema } from '@/components/features/Login/schema';
+import { signup } from '@/components/features/Signin/SignupForm/actions';
+import { Schema as LoginSchema } from '@/components/features/Signin/schema';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/navigation';
 import { type SubmitHandler, useForm } from 'react-hook-form';
@@ -17,7 +17,7 @@ const Schema = LoginSchema.pick({ mail: true, password: true })
     path: ['passwordConfirmation'],
   });
 
-export const useRegisterForm = () => {
+export const useSignupForm = () => {
   const { showToast } = useToast();
   const router = useRouter();
 
