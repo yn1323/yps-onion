@@ -46,7 +46,7 @@
   "devDependencies": {
     "@biomejs/biome": "1.8.3",
     "@chromatic-com/storybook": "1.6.1",
-    "@playwright/test": "1.45.1",
+    "@playwright/test": "1.45.2",
     "@storybook/addon-a11y": "8.2.2",
     "@storybook/addon-essentials": "8.2.2",
     "@storybook/addon-interactions": "8.2.2",
@@ -70,7 +70,7 @@
     "jsdom": "24.1.0",
     "msw": "2.3.2",
     "msw-storybook-addon": "2.0.3",
-    "playwright": "1.45.1",
+    "playwright": "1.45.2",
     "postcss": "8.4.39",
     "prisma": "5.17.0",
     "scaffdog": "4.0.0",
