@@ -1,18 +1,18 @@
 'use client';
 
 import { Button } from '@/components/atoms/Button';
-import { useUserRegistration } from '@/components/features/initialRegister/UserRegistration/hooks';
+import { useUserForm } from '@/components/features/forms/UserForm/hooks';
 import { Input } from '@/components/forms/Input';
 import { FormProvider } from 'react-hook-form';
 
-export const UserRegistration = () => {
-  const formData = useUserRegistration();
-  return <UserRegistrationInner {...formData} />;
+export const UserForm = () => {
+  const formData = useUserForm();
+  return <UserFormInner {...formData} />;
 };
 
-type Props = {} & ReturnType<typeof useUserRegistration>;
+type Props = ReturnType<typeof useUserForm>;
 
-export const UserRegistrationInner = ({ methods, onSubmit }: Props) => {
+export const UserFormInner = ({ methods, onSubmit }: Props) => {
   return (
     <FormProvider {...methods}>
       <form

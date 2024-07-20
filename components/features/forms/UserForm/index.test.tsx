@@ -1,5 +1,5 @@
-import { UserRegistrationInner } from '@/components/features/initialRegister/UserRegistration';
-import { useUserRegistration } from '@/components/features/initialRegister/UserRegistration/hooks';
+import { UserFormInner } from '@/components/features/forms/UserForm';
+import { useUserForm } from '@/components/features/forms/UserForm/hooks';
 import { composeStories } from '@storybook/react';
 import {
   fireEvent,
@@ -16,7 +16,7 @@ const user = userEvent.setup();
 
 const { Basic } = composeStories(stories);
 
-describe('UserRegistration Components', () => {
+describe('UserForm Components', () => {
   afterEach(() => {
     vi.clearAllMocks();
   });
@@ -59,9 +59,9 @@ describe('UserRegistration Components', () => {
   describe('Submit', () => {
     const onSubmitMock = vi.fn();
     test('Submit validation', async () => {
-      const { result } = renderHook(() => useUserRegistration());
+      const { result } = renderHook(() => useUserForm());
       render(
-        <UserRegistrationInner
+        <UserFormInner
           methods={result.current.methods}
           onSubmit={onSubmitMock}
         />,

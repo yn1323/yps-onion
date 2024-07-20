@@ -1,9 +1,9 @@
-import { Schema } from '@/components/features/initialRegister/UserRegistration/schema';
+import { Schema } from '@/components/features/forms/UserForm/schema';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm, type SubmitHandler } from 'react-hook-form';
+import { type SubmitHandler, useForm } from 'react-hook-form';
 import type { z } from 'zod';
 
-export const useUserRegistration = () => {
+export const useUserForm = () => {
   type SchemaType = z.infer<typeof Schema>;
   const methods = useForm<SchemaType>({
     resolver: zodResolver(Schema),
