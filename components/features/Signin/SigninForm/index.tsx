@@ -46,12 +46,12 @@ export const SigninFormInner = ({ methods, onSubmit }: Props) => {
       </Button>
       <div className="flex w-full flex-col gap-2 text-right text-gray-500 text-sm">
         <div>
-          <Link className="hover:underline" href="/Signin/new">
+          <Link className="hover:underline" href="/login/signup">
             新規登録
           </Link>
         </div>
         <div>
-          <Link className="hover:underline" href="/Signin/forget">
+          <Link className="hover:underline" href="/login/forget">
             パスワードを忘れた方
           </Link>
         </div>
