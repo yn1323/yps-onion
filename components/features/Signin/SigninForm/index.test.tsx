@@ -106,12 +106,12 @@ describe('SigninForm Components', () => {
     test('New Registration', async () => {
       render(<Basic />);
       const link = screen.getByText('新規登録');
-      expect(link).toHaveAttribute('href', '/Signin/new');
+      expect(link).toHaveAttribute('href', '/login/signup');
     });
     test('Forget Password', async () => {
       render(<Basic />);
       const link = screen.getByText('パスワードを忘れた方');
-      expect(link).toHaveAttribute('href', '/Signin/forget');
+      expect(link).toHaveAttribute('href', '/login/forget');
     });
   });
   describe('Submit', () => {
