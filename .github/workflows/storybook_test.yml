@@ -4,7 +4,6 @@ on: push
 
 jobs:
   storybook_test:
-    if: (github.event.pull_request.draft == true || contains(github.event.pull_request.labels.*.name , 'renovate'))
     timeout-minutes: 20
     runs-on: ubuntu-latest
     steps:

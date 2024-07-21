@@ -1,22 +1,33 @@
 import { Button } from '@/components/atoms/Button';
+import { type Option, Select } from '@/components/forms/Select';
+import { select } from '@/src/helpers/validation';
 import { zodResolver } from '@hookform/resolvers/zod';
 import type { Meta, StoryObj } from '@storybook/react';
 import { userEvent, within } from '@storybook/test';
 import { FormProvider, type SubmitHandler, useForm } from 'react-hook-form';
 import { z } from 'zod';
-import { Input } from '.';
 
-const ZOD_SCHEMA = z.string().min(1);
+const options = [
+  { value: '1', label: 'Option 1' },
+  { value: '2', label: 'Option 2' },
+  { value: '3', label: 'Option 3', selected: true },
+] as const satisfies Option[];
+
+const ZOD_SCHEMA = z
+  .string()
+  .superRefine(select({ options, forceSelect: true }));
 
 const meta = {
-  title: 'forms/Input',
-  component: Input,
+  title: 'forms/Select',
+  component: Select,
   args: {
-    type: 'text',
-    maxLength: 20,
+    label: 'Select Label',
+    options,
+    placeholder: 'Select an option',
+    id: 'select',
+    forceSelect: false,
+    description: '',
     disabled: false,
-    placeholder: 'Enter text here',
-    id: 'input',
   },
   decorators: [
     (_, { args }) => {
@@ -26,7 +37,9 @@ const meta = {
       const methods = useForm<SchemaType>({
         resolver: zodResolver(Schema),
       });
-      const onSubmit: SubmitHandler<SchemaType> = () => {};
+      const onSubmit: SubmitHandler<SchemaType> = (d) => {
+        console.log(d);
+      };
 
       return (
         <FormProvider {...methods}>
@@ -34,9 +47,9 @@ const meta = {
             onSubmit={methods.handleSubmit(onSubmit)}
             className="flex flex-col gap-6"
           >
-            <Input {...args} label="Basic" />
-            <Input {...args} disabled label="Disabled" />
-            <Input
+            <Select {...args} label="Basic" />
+            <Select {...args} disabled label="Disabled" />
+            <Select
               {...args}
               label="Description"
               description="Description......."
@@ -47,7 +60,7 @@ const meta = {
       );
     },
   ],
-} satisfies Meta<typeof Input>;
+} satisfies Meta<typeof Select>;
 export default meta;
 
 export const Basic: StoryObj<typeof meta> = {};
