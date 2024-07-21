@@ -1,11 +1,11 @@
-import { composeStories } from '@storybook/react';
-import { userEvent } from '@testing-library/user-event';
+// import { composeStories } from '@storybook/react';
+// import { userEvent } from '@testing-library/user-event';
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import * as stories from './index.stories';
+// import * as stories from './index.stories';
 
-const user = userEvent.setup();
+// const user = userEvent.setup();
 
-const { Basic } = composeStories(stories);
+// const { Basic } = composeStories(stories);
 
 describe('ShopForm Components', () => {
   afterEach(() => {
