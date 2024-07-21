@@ -1,34 +1,45 @@
 import { Button } from '@/components/atoms/Button';
-import { Input } from '@/components/forms/Input';
+import { type Option, Select } from '@/components/forms/Select';
+import { select } from '@/src/helpers/validation';
 import { zodResolver } from '@hookform/resolvers/zod';
 import type { Meta, StoryObj } from '@storybook/react';
 import { userEvent, within } from '@storybook/test';
 import { FormProvider, type SubmitHandler, useForm } from 'react-hook-form';
 import { z } from 'zod';
-import type { Select } from '.';
 
-const ZOD_SCHEMA = z.string().min(1);
+const options = [
+  { value: '1', label: 'Option 1' },
+  { value: '2', label: 'Option 2' },
+  { value: '3', label: 'Option 3', selected: true },
+] as const satisfies Option[];
+
+const ZOD_SCHEMA = z
+  .string()
+  .superRefine(select({ options, forceSelect: true }));
 
 const meta = {
   title: 'forms/Select',
-  component: Input,
+  component: Select,
   args: {
-    type: 'text',
-    maxLength: 20,
+    label: 'Select Label',
+    options,
+    placeholder: 'Select an option',
+    id: 'select',
+    forceSelect: false,
+    description: '',
     disabled: false,
-    placeholder: 'Enter text here',
-    label: 'Input Label',
-    id: 'input',
   },
   decorators: [
-    (Story, { args }) => {
+    (_, { args }) => {
       const id = args.id ?? '';
       const Schema = z.object({ [id]: ZOD_SCHEMA });
       type SchemaType = z.infer<typeof Schema>;
       const methods = useForm<SchemaType>({
         resolver: zodResolver(Schema),
       });
-      const onSubmit: SubmitHandler<SchemaType> = () => {};
+      const onSubmit: SubmitHandler<SchemaType> = (d) => {
+        console.log(d);
+      };
 
       return (
         <FormProvider {...methods}>
@@ -36,14 +47,13 @@ const meta = {
             onSubmit={methods.handleSubmit(onSubmit)}
             className="flex flex-col gap-6"
           >
-            <Story {...args} label="Basic" />
-            <Story {...args} disabled label="Disabled" />
-            <Story
+            <Select {...args} label="Basic" />
+            <Select {...args} disabled label="Disabled" />
+            <Select
               {...args}
               label="Description"
               description="Description......."
             />
-            <Story {...args} label="Required" />
             <Button type="submit">Submit</Button>
           </form>
         </FormProvider>

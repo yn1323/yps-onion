@@ -40,11 +40,9 @@ export const TimePicker = ({
   } = useFormContext<{ [id: string]: string }>();
 
   const errorMessage = useMemo(
-    () => errors[id]?.message,
-    [id, errors[id]?.message],
+    () => (disabled ? undefined : errors[id]?.message),
+    [id, disabled, errors[id]?.message],
   );
-
-  console.log(register(id));
 
   return (
     <div className="flex flex-col">

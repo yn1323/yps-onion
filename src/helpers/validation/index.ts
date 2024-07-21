@@ -1,3 +1,4 @@
+import type { Option } from '@/components/forms/Select';
 import { z } from 'zod';
 
 export const betweenLength =
@@ -38,3 +39,28 @@ export const time = (step?: number) => (val: string, ctx: z.RefinementCtx) => {
     }
   }
 };
+
+export const select =
+  ({
+    options,
+    forceSelect,
+  }: {
+    options: Option[];
+    forceSelect?: boolean;
+  }) =>
+  (val: string, ctx: z.RefinementCtx) => {
+    if (!forceSelect) {
+      return;
+    }
+    if (!val) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: '必須項目です',
+      });
+    } else if (options.every(({ value }) => value !== val)) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: '必須選択です',
+      });
+    }
+  };

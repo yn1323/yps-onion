@@ -16,11 +16,10 @@ const meta = {
     maxLength: 20,
     disabled: false,
     placeholder: 'Enter text here',
-    label: 'Input Label',
     id: 'input',
   },
   decorators: [
-    (Story, { args }) => {
+    (_, { args }) => {
       const id = args.id ?? '';
       const Schema = z.object({ [id]: ZOD_SCHEMA });
       type SchemaType = z.infer<typeof Schema>;
@@ -35,14 +34,13 @@ const meta = {
             onSubmit={methods.handleSubmit(onSubmit)}
             className="flex flex-col gap-6"
           >
-            <Story {...args} label="Basic" />
-            <Story {...args} disabled label="Disabled" />
-            <Story
+            <Input {...args} label="Basic" />
+            <Input {...args} disabled label="Disabled" />
+            <Input
               {...args}
               label="Description"
               description="Description......."
             />
-            <Story {...args} label="Required" />
             <Button type="submit">Submit</Button>
           </form>
         </FormProvider>

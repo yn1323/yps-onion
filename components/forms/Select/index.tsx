@@ -5,7 +5,7 @@ import { useFormContext } from 'react-hook-form';
 import { tv } from 'tailwind-variants';
 
 const select = tv({
-  base: 'mt-2 h-10 rounded-md border px-3 outline-none',
+  base: 'flex h-10 w-full rounded-lg border border-gray-300 px-2',
   variants: {
     disabled: {
       true: 'cursor-not-allowed opacity-50 active:opacity-50',
@@ -18,7 +18,7 @@ const select = tv({
   },
 });
 
-type Option = {
+export type Option = {
   value: string;
   label: string;
   selected?: boolean;
@@ -28,16 +28,9 @@ type Props = {
   label?: string;
   description?: string;
   options: Option[];
-} & Partial<Pick<HTMLSelectElement, 'disabled' | 'id'>> &
-  XOR<
-    {
-      placeholder: string;
-      forceSelect: true;
-    },
-    {
-      forceSelect?: false;
-    }
-  >;
+  placeholder?: string;
+  forceSelect?: boolean;
+} & Partial<Pick<HTMLSelectElement, 'disabled' | 'id'>>;
 
 export const Select = ({
   label,
@@ -45,7 +38,7 @@ export const Select = ({
   options,
   disabled = false,
   id = 'input',
-  placeholder = '',
+  placeholder,
   forceSelect = false,
 }: Props) => {
   const {
@@ -54,28 +47,24 @@ export const Select = ({
   } = useFormContext<{ [id: string]: string }>();
 
   const errorMessage = useMemo(
-    () => errors[id]?.message,
-       [id, errors[id]?.message],
+    () => (disabled ? undefined : errors[id]?.message),
+    [id, disabled, errors[id]?.message],
   );
 
-  placeholder;
-  forceSelect;
-
   return (
-
-    
     <div className="flex flex-col">
       {label && <label htmlFor={id}>{label}</label>}
-
       <select
         {...register(id)}
         className={select({ disabled, error: !!errorMessage })}
         aria-describedby={`${id}-説明文`}
         aria-errormessage={`${id}-エラーメッセージ`}
         aria-invalid={!!errorMessage}
+        disabled={disabled}
       >
-        {options.map(({ label, value }, i) => (
-          <option key={i} value={value}>
+        {!forceSelect && <option>{placeholder}</option>}
+        {options.map(({ label, value, selected }, i) => (
+          <option key={i} value={value} selected={selected}>
             {label}
           </option>
         ))}

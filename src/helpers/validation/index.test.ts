@@ -1,4 +1,5 @@
-import { betweenLength, time } from '@/src/helpers/validation';
+import type { Option } from '@/components/forms/Select';
+import { betweenLength, select, time } from '@/src/helpers/validation';
 import { describe, expect, it } from 'vitest';
 import { z } from 'zod';
 
@@ -28,6 +29,27 @@ describe('Validations', () => {
     expect(zodSchema.safeParse('aaa').success).toBeFalsy();
     expect(zodSchema.safeParse('aaa').error?.errors[0].message).toStrictEqual(
       '時刻を入力してください',
+    );
+  });
+  it('select', () => {
+    const options = [
+      { value: '1', label: 'Option 1' },
+      { value: '2', label: 'Option 2' },
+      { value: '3', label: 'Option 3', selected: true },
+    ] as Option[];
+
+    const zodSchema = z
+      .string()
+      .superRefine(select({ options, forceSelect: true }));
+
+    expect(zodSchema.safeParse('1').success).toBeTruthy();
+    expect(zodSchema.safeParse('2').success).toBeTruthy();
+    expect(zodSchema.safeParse('3').success).toBeTruthy();
+    expect(zodSchema.safeParse('').error?.errors[0].message).toStrictEqual(
+      '必須項目です',
+    );
+    expect(zodSchema.safeParse('4').error?.errors[0].message).toStrictEqual(
+      '必須選択です',
     );
   });
 });

@@ -19,7 +19,7 @@ const meta = {
     id: 'TimePicker',
   },
   decorators: [
-    (Story, { args }) => {
+    (_, { args }) => {
       const id = args.id ?? '';
       const Schema = z.object({ [id]: ZOD_SCHEMA });
       type SchemaType = z.infer<typeof Schema>;
@@ -36,14 +36,13 @@ const meta = {
             onSubmit={methods.handleSubmit(onSubmit)}
             className="flex flex-col gap-6"
           >
-            <Story {...args} label="Basic" />
-            <Story {...args} disabled label="Disabled" />
-            <Story
+            <TimePicker {...args} label="Basic" />
+            <TimePicker {...args} disabled label="Disabled" />
+            <TimePicker
               {...args}
               label="Description"
               description="Description......."
             />
-            <Story {...args} label="Required" />
             <Button type="submit">Submit</Button>
           </form>
         </FormProvider>
