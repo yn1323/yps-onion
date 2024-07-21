@@ -4,8 +4,8 @@ import { useMemo } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { tv } from 'tailwind-variants';
 
-const input = tv({
-  base: 'mt-2 h-10 rounded-md border px-3 outline-none',
+const select = tv({
+  base: 'flex h-10 w-full rounded-lg border border-gray-300 px-2',
   variants: {
     disabled: {
       true: 'cursor-not-allowed opacity-50 active:opacity-50',
@@ -18,24 +18,28 @@ const input = tv({
   },
 });
 
-type Props = {
-  description?: string;
-  label?: string;
-} & Partial<
-  Pick<
-    HTMLInputElement,
-    'type' | 'maxLength' | 'disabled' | 'id' | 'placeholder'
-  >
->;
+export type Option = {
+  value: string;
+  label: string;
+  selected?: boolean;
+};
 
-export const Input = ({
-  description,
+type Props = {
+  label?: string;
+  description?: string;
+  options: Option[];
+  placeholder?: string;
+  forceSelect?: boolean;
+} & Partial<Pick<HTMLSelectElement, 'disabled' | 'id'>>;
+
+export const Select = ({
   label,
+  description,
+  options,
   disabled = false,
   id = 'input',
-  maxLength,
-  type = 'text',
   placeholder,
+  forceSelect = false,
 }: Props) => {
   const {
     register,
@@ -47,23 +51,24 @@ export const Input = ({
     [id, disabled, errors[id]?.message],
   );
 
-  console.log(label);
-
   return (
     <div className="flex flex-col">
       {label && <label htmlFor={id}>{label}</label>}
-      <input
-        className={input({ disabled, error: !!errorMessage })}
+      <select
         {...register(id)}
-        id={id}
-        type={type}
-        disabled={disabled}
-        placeholder={placeholder}
-        maxLength={maxLength}
+        className={select({ disabled, error: !!errorMessage })}
         aria-describedby={`${id}-説明文`}
         aria-errormessage={`${id}-エラーメッセージ`}
         aria-invalid={!!errorMessage}
-      />
+        disabled={disabled}
+      >
+        {!forceSelect && <option>{placeholder}</option>}
+        {options.map(({ label, value, selected }, i) => (
+          <option key={i} value={value} selected={selected}>
+            {label}
+          </option>
+        ))}
+      </select>
       {description && <span id={`${id}-説明文`}>{description}</span>}
       {errorMessage && (
         <span id={`${id}-エラーメッセージ`} className="text-red-500">
