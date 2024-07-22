@@ -1,7 +1,5 @@
 {
   "autoAcceptChanges": "main",
-  "exitOnceUploaded": true,
-  "exitZeroOnChanges": true,
   "onlyChanged": true,
   "projectId": "Project:669321865159b196bb97d81d",
   "storybookBaseDir": "./",

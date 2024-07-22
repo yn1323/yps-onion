@@ -10,7 +10,6 @@ export const useShopForm = () => {
     mode: 'onBlur',
   });
 
-
   const onSubmit: SubmitHandler<SchemaType> = (data) => {
     console.log(data);
   };
