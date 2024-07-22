@@ -11,3 +11,5 @@ vi.mock('next/navigation', () => ({
     push: vi.fn(),
   }),
 }));
+
+vi.spyOn(console, 'log').mockReturnValue();

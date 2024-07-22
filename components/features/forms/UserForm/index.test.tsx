@@ -42,7 +42,8 @@ describe('UserForm Components', () => {
       render(<Basic />);
       const userInput = screen.getByLabelText('ユーザー名');
       const submit = screen.getByText('登録');
-      await userEvent.type(userInput, 'a'.repeat(20));
+      userEvent.click(userInput);
+      await userEvent.paste('a'.repeat(20));
       fireEvent.blur(userInput);
       await waitFor(() => {
         expect(
