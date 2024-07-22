@@ -14,7 +14,7 @@
     "type-check": "tsc",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "chromatic": "chromatic --exit-zero-on-changes",
+    "chromatic": "chromatic",
     "generate": "scaffdog generate",
     "test-storybook": "test-storybook",
     "test-storybook:ci": "pnpm dlx concurrently -k -s first -n \"SB,TEST\" -c \"magenta,blue\" \"pnpm dlx http-server storybook-static --port 6006 --silent\" \"pnpm dlx wait-on tcp:127.0.0.1:6006 && pnpm test-storybook\"",
