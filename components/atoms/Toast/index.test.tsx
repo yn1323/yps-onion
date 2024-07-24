@@ -15,7 +15,10 @@ describe('Toast Components', () => {
   });
   test('Event handler', async () => {
     render(<Success onClose={onCloseMock} />);
-    const closeButton = screen.getByRole('button', { name: 'closeToast' });
+    // Decoratorにも存在するため1つ目の要素を抽出
+    const closeButton = screen.getAllByRole('button', {
+      name: 'closeToast',
+    })[0];
     await user.click(closeButton);
     expect(onCloseMock).toHaveBeenCalledOnce();
   });

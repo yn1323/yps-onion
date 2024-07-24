@@ -1,8 +1,9 @@
+import { Toast } from '@/components/atoms/Toast';
+import { customErrorMap } from '@/src/helpers/validation/customErrorMap';
+import '@/styles/globals.css';
 import type { Preview } from '@storybook/react';
 import { initialize, mswDecorator } from 'msw-storybook-addon';
 import zod from 'zod';
-import { customErrorMap } from '../src/helpers/validation/customErrorMap';
-import '../styles/globals.css';
 
 initialize();
 zod.setErrorMap(customErrorMap);
@@ -25,7 +26,16 @@ const preview: Preview = {
     },
     chromatic: { viewports: [414, 1080] },
   },
-  decorators: [mswDecorator],
+  decorators: [
+    mswDecorator,
+    (Story) => (
+      <>
+        <Story />
+        dasdsadas
+        <Toast />
+      </>
+    ),
+  ],
 };
 
 export default preview;

@@ -19,7 +19,7 @@ export const UserFormInner = ({ methods, onSubmit }: Props) => {
         onSubmit={methods.handleSubmit(onSubmit)}
         className="flex flex-col gap-6"
       >
-        <Input label="ユーザー名" id="user" />
+        <Input label="ユーザー名" id="userName" />
         <Button type="submit">登録</Button>
       </form>
     </FormProvider>

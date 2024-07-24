@@ -77,7 +77,7 @@ describe('UserForm Components', () => {
 
       // react-hook-formの利用しない引数も含まれるためexpect.objectContaining, expect.arrayContainingで判定しない
       expect(onSubmitMock.mock.calls[0][0]).toStrictEqual({
-        user: '0123456789',
+        userName: '0123456789',
       });
     });
   });
