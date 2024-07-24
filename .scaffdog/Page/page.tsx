@@ -2,15 +2,15 @@ import { Animation } from '@/components/layouts/Animation';
 import { Center } from '@/components/layouts/Center';
 
 async function initialize() {
-  const { user } = await serverFetch<GetSelf>('/auth/self')
+  const { user } = await serverFetch<GetSelf>('/auth/self');
   if (!user) {
-    return { name: '', uid: '', picture: '' }
+    return { name: '', uid: '', picture: '' };
   }
-  return user
+  return user;
 }
 
-const {{ inputs.component | pascal }}Page = () => {
-  await initialize()
+const {{ inputs.component | pascal }}Page = async() => {
+  await initialize();
   return (
     <Animation>
       <Center>
