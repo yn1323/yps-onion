@@ -18,9 +18,9 @@ runs:
       env:
         DATABASE_URL: ${{ inputs.DATABASE_URL }}
         DIRECT_URL: ${{ inputs.DIRECT_URL }}
-    # - name: Seed database
-    #   shell: bash
-    #   run: pnpm prisma db seed
-    #   env:
-    #     DATABASE_URL: ${{ inputs.DATABASE_URL }}
-    #     DIRECT_URL: ${{ inputs.DIRECT_URL }}
+    - name: Seed database
+      shell: bash
+      run: pnpm prisma db seed
+      env:
+        DATABASE_URL: ${{ inputs.DATABASE_URL }}
+        DIRECT_URL: ${{ inputs.DIRECT_URL }}

@@ -9,17 +9,17 @@ datasource db {
 }
 
 model ShopUserBelonging {
-  id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  id        String   @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
   shopId    String   @db.Uuid
   userId    String   @unique
   shop      Shop     @relation(fields: [shopId], references: [id])
   user      User     @relation(fields: [userId], references: [userId])
-  isDeleted Boolean
+  isDeleted Boolean  @default(false)
   createdAt DateTime @default(now())
 }
 
 model OrganizationShopBelonging {
-  id             String       @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  id             String       @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
   organizationId String       @db.Uuid
   shopId         String       @db.Uuid
   shop           Shop         @relation(fields: [shopId], references: [id])
@@ -29,17 +29,17 @@ model OrganizationShopBelonging {
 }
 
 model Organization {
-  id               String                      @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  id               String                      @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
   organizationName String
   shop             OrganizationShopBelonging[]
   temporaryClosed  TemporaryClosed[]
   announce         Announce[]
-  isDeleted        Boolean
+  isDeleted        Boolean                     @default(false)
   createdAt        DateTime                    @default(now())
 }
 
 model Shop {
-  id              String                      @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  id              String                      @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
   shopName        String
   openTime        String
   closeTime       String
@@ -56,54 +56,51 @@ model Shop {
   timeCard        TimeCard[]
   temporaryClosed TemporaryClosed[]
   announce        Announce[]
-  isDeleted       Boolean
+  isDeleted       Boolean                     @default(false)
   createdAt       DateTime                    @default(now())
   Invitation      Invitation[]
 }
 
 model User {
-  id            String              @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  userId        String              @unique
+  id            String              @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  userId        String              @unique @default(dbgenerated("uuid_generate_v4()"))
   userName      String
-  avatar        String
-  role          String
-  email         String
-  isSignedUp    Boolean
+  avatar        String              @default("")
   shop          ShopUserBelonging[]
   stableShift   StableShift[]
   unstableShift UnstableShift[]
   request       Request[]
   timeCard      TimeCard[]
-  isDeleted     Boolean
+  isDeleted     Boolean             @default(false)
   createdAt     DateTime            @default(now())
   Invitation    Invitation[]
 }
 
 model Invitation {
-  id              String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  id              String   @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
   invitedBy       Shop     @relation(fields: [invitedByShopId], references: [id])
   invitedByShopId String   @db.Uuid
   targetUser      User     @relation(fields: [targetUserId], references: [id])
   targetUserId    String   @db.Uuid
-  accepted        Boolean
-  isDeleted       Boolean
+  accepted        Boolean  @default(false)
+  isDeleted       Boolean  @default(false)
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
 }
 
 model Operation {
-  id            String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  id            String   @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
   shopId        String   @db.Uuid
   operationName String
   icon          String
   color         String
   shop          Shop     @relation(fields: [shopId], references: [id])
-  isDeleted     Boolean
+  isDeleted     Boolean  @default(false)
   createdAt     DateTime @default(now())
 }
 
 model StableShift {
-  id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  id        String   @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
   shopId    String   @db.Uuid
   userId    String   @unique
   workFrom  DateTime
@@ -112,12 +109,12 @@ model StableShift {
   breakTo   DateTime
   shop      Shop     @relation(fields: [shopId], references: [id])
   user      User     @relation(fields: [userId], references: [userId])
-  isDeleted Boolean
+  isDeleted Boolean  @default(false)
   createdAt DateTime @default(now())
 }
 
 model UnstableShift {
-  id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  id        String   @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
   shopId    String   @db.Uuid
   userId    String   @unique
   workFrom  DateTime
@@ -126,25 +123,25 @@ model UnstableShift {
   breakTo   DateTime
   shop      Shop     @relation(fields: [shopId], references: [id])
   user      User     @relation(fields: [userId], references: [userId])
-  isDeleted Boolean
+  isDeleted Boolean  @default(false)
   createdAt DateTime @default(now())
 }
 
 model Request {
-  id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  id        String   @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
   shopId    String   @db.Uuid
   userId    String   @unique
   dateFrom  DateTime
   dateTo    DateTime
-  done      Boolean
+  done      Boolean  @default(false)
   shop      Shop     @relation(fields: [shopId], references: [id])
   user      User     @relation(fields: [userId], references: [userId])
-  isDeleted Boolean
+  isDeleted Boolean  @default(false)
   createdAt DateTime @default(now())
 }
 
 model TimeCard {
-  id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  id        String   @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
   shopId    String   @db.Uuid
   userId    String   @unique
   workFrom  DateTime
@@ -153,28 +150,28 @@ model TimeCard {
   breakTo   DateTime
   shop      Shop     @relation(fields: [shopId], references: [id])
   user      User     @relation(fields: [userId], references: [userId])
-  isDeleted Boolean
+  isDeleted Boolean  @default(false)
   createdAt DateTime @default(now())
 }
 
 model TemporaryClosed {
-  id             String       @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  id             String       @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
   organizationId String       @db.Uuid
   shopId         String       @db.Uuid
   date           DateTime
   organization   Organization @relation(fields: [organizationId], references: [id])
   shop           Shop         @relation(fields: [shopId], references: [id])
-  isDeleted      Boolean
+  isDeleted      Boolean      @default(false)
   createdAt      DateTime     @default(now())
 }
 
 model Announce {
-  id             String       @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  id             String       @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
   organizationId String       @db.Uuid
   shopId         String       @db.Uuid
   message        String
   organization   Organization @relation(fields: [organizationId], references: [id])
   shop           Shop         @relation(fields: [shopId], references: [id])
-  isDeleted      Boolean
+  isDeleted      Boolean      @default(false)
   createdAt      DateTime     @default(now())
 }

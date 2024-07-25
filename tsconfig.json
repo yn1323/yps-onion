@@ -24,7 +24,8 @@
       "@/components/*": ["./components/*"],
       "@/src/*": ["./src/*"],
       "@/e2e/*": ["./e2e/*"],
-      "@/styles/*": ["./styles/*"]
+      "@/styles/*": ["./styles/*"],
+      "@/prisma/*": ["./prisma/*"]
     }
   },
   "include": [
