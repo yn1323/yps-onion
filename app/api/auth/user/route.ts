@@ -37,6 +37,6 @@ export const POST = async (request: NextRequest) => {
   return Response.json({ exist: !!result });
 };
 
-export const revalidate = () => {
-  revalidatePath('/auth/user');
+export const revalidateAuthUser = () => {
+  revalidatePath('/api/auth/user');
 };

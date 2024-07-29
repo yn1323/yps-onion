@@ -41,6 +41,11 @@ export async function updateSession(request: NextRequest) {
     return supabaseResponse;
   }
 
+  const isApi = request.nextUrl.pathname.includes('/api');
+  if (isApi) {
+    return supabaseResponse;
+  }
+
   const {
     data: { user },
   } = await supabase.auth.getUser();

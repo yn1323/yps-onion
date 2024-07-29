@@ -1,18 +1,16 @@
 'use server';
 
-import type { PostUserExistence } from '@/app/(auth)/auth/user/route';
-import { auth } from '@/src/hooks/auth';
+import type { PostUserExistence } from '@/app/api/auth/user/route';
+import { auth } from '@/src/helpers/auth/auth';
+import { nextPath } from '@/src/helpers/next';
 import { serverFetch } from '@/src/services/common/fetch';
-import { headers } from 'next/headers';
 import { redirect } from 'next/navigation';
 
 const SafePaths = ['/signup/user'];
 
 export const checkUser = async () => {
   const { getUser } = auth();
-  const heads = headers();
-
-  const pathname = heads.get('next-url');
+  const pathname = nextPath();
 
   if (SafePaths.some((p) => pathname?.includes(p))) {
     return;
@@ -28,7 +26,7 @@ export const checkUser = async () => {
     redirect('/login');
   }
 
-  const result = await serverFetch<PostUserExistence>('/auth/user', {
+  const result = await serverFetch<PostUserExistence>('/api/auth/user', {
     method: 'POST',
     query: {
       userId,
