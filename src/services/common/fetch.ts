@@ -17,6 +17,7 @@ export type BaseFetch = {
     cache?: RequestInit['cache'];
     next?: {
       tags?: RevalidateTagType[];
+      revalidate?: number;
     };
   };
 };
@@ -38,7 +39,7 @@ const baseFetch = async <T extends BaseFetch>(
 
   const body = method === 'GET' ? {} : { body: JSON.stringify(query) };
 
-  const cache = { cache: options?.cache ?? 'force-cache' };
+  const cache = { cache: options?.cache ?? 'no-store' };
 
   const next = { next: options?.next ?? {} };
 
@@ -49,13 +50,15 @@ const baseFetch = async <T extends BaseFetch>(
       cookie: `token=${cookie}`,
       'Content-Type': 'application/json',
     },
-    ...next,
-    ...cache,
+    ...(options?.next ? next : cache),
   });
   // biome-ignore lint/style/useBlockStatements: <explanation>
   if (!res.ok) return {};
-  const json: T['response'] = await res.json();
-  return json;
+  const json: T['response'] = await res.json().catch((e) => {
+    console.error('Failed fetch: ', targetUrl);
+    console.error(e);
+  });
+  return json ?? {};
 };
 
 export const serverFetch = async <T extends BaseFetch>(
