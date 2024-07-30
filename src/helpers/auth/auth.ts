@@ -1,4 +1,4 @@
-import { createClient } from '@/src/configs/setup/supabase/server';
+import { createClient } from '@/src/configs/supabase/server';
 
 export const auth = () => {
   const client = createClient();
