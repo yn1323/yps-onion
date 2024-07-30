@@ -1,14 +1,3 @@
-import { SignupForm } from '@/components/features/Signin/SignupForm';
-import { Animation } from '@/components/layouts/Animation';
-import { Center } from '@/components/layouts/Center';
+import { LoginSignupPage } from '@/components/pages/login/signup';
 
-const RegisterPage = () => {
-  return (
-    <Animation>
-      <Center>
-        <SignupForm />
-      </Center>
-    </Animation>
-  );
-};
-export default RegisterPage;
+export default LoginSignupPage;

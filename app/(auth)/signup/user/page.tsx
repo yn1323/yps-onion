@@ -1,14 +1,3 @@
-import { UserForm } from '@/components/features/forms/UserForm';
-import { Animation } from '@/components/layouts/Animation';
-import { Center } from '@/components/layouts/Center';
+import { SignupUserPage } from '@/components/pages/(auth)/signup/user';
 
-const UserSignupPage = () => {
-  return (
-    <Animation>
-      <Center>
-        <UserForm />
-      </Center>
-    </Animation>
-  );
-};
-export default UserSignupPage;
+export default SignupUserPage;

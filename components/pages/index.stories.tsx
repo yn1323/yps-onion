@@ -1,12 +1,12 @@
+import { MainPageInner } from '@/components/pages';
 import type { Meta, StoryObj } from '@storybook/react';
-import RegisterPage from './page';
 
 const meta = {
-  title: 'app/login/new',
-  component: RegisterPage,
-} satisfies Meta<typeof RegisterPage>;
-
+  title: 'pages/MainPage',
+  component: MainPageInner,
+} satisfies Meta<typeof MainPageInner>;
 export default meta;
+
 type Story = StoryObj<typeof meta>;
 
 export const Basic: Story = {};
