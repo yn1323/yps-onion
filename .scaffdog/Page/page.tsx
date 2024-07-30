@@ -12,11 +12,20 @@ async function initialize() {
 const {{ inputs.component | pascal }}Page = async() => {
   await initialize();
   return (
-    <Animation>
-      <Center>
-        <div>aaa</div>
-      </Center>
-    </Animation>
+    < {{ inputs.component | pascal }}PageInner/>
   );
 };
+
+type Props = {}
+
+export const {{ inputs.component | pascal }}PageInner = ({}: Props) => {
+  return (
+    <Animation>
+    <Center>
+      <div>aaa</div>
+    </Center>
+  </Animation>
+  );
+};
+
 export default {{ inputs.component | pascal }}Page;
