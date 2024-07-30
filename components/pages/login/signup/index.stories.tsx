@@ -2,7 +2,7 @@ import { LoginSignupPageInner } from '@/components/pages/login/signup';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
-  title: 'pages/LoginSignupPage',
+  title: 'pages/login/signup',
   component: LoginSignupPageInner,
 } satisfies Meta<typeof LoginSignupPageInner>;
 export default meta;

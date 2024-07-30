@@ -2,7 +2,7 @@ import type { StorybookConfig } from '@storybook/nextjs';
 import path from 'node:path';
 
 const config: StorybookConfig = {
-  stories: ['../(app|components)/**/*.stories.@(ts|tsx)'],
+  stories: ['../components/**/*.stories.tsx'],
   addons: [
     '@storybook/addon-onboarding',
     '@storybook/addon-links',
@@ -42,7 +42,8 @@ const config: StorybookConfig = {
   env: (config) => ({
     ...config,
     NEXT_PUBLIC_SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL ?? '',
-    NEXT_PUBLIC_SUPABASE_ANON_KEY: process.env.NEXT_PUBLIC_SUP ?? '',
+    NEXT_PUBLIC_SUPABASE_ANON_KEY:
+      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? '',
   }),
 };
 export default config;

@@ -2,7 +2,7 @@ import { MainPageInner } from '@/components/pages';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
-  title: 'pages/MainPage',
+  title: 'pages/root',
   component: MainPageInner,
 } satisfies Meta<typeof MainPageInner>;
 export default meta;
