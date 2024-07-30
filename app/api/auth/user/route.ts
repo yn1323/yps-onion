@@ -1,6 +1,5 @@
 import prisma from '@/prisma/libs/db';
 import type { BaseFetch } from '@/src/services/common/fetch';
-import { revalidatePath } from 'next/cache';
 import type { NextRequest } from 'next/server';
 
 type userExistenceDocument = {
@@ -35,8 +34,4 @@ export const POST = async (request: NextRequest) => {
   console.log('PostUserExistence: ', result);
 
   return Response.json({ exist: !!result });
-};
-
-export const revalidateAuthUser = () => {
-  revalidatePath('/api/auth/user');
 };

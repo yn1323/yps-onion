@@ -1,7 +1,7 @@
 'use server';
 
-import { revalidateAuthUser } from '@/app/api/auth/user/route';
+import { revalidatePath } from 'next/cache';
 
 export const revalidateAuth = async () => {
-  await revalidateAuthUser();
+  await revalidatePath('/api/auth/user');
 };
