@@ -1,10 +1,7 @@
-import { composeStories } from '@storybook/react';
+import Page from '@/app/(auth)/signup/user/page';
 import { render } from '@testing-library/react';
 import { test } from 'vitest';
-import * as stories from './page.stories';
 
-const { Basic } = composeStories(stories);
-
-test('/(auth)/signup/user', () => {
-  render(<Basic />);
+test('/(auth)/signup/user', async () => {
+  render(await Page());
 });

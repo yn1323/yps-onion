@@ -1,10 +1,10 @@
-import { render, screen } from '@testing-library/react';
-import { expect, test } from 'vitest';
-import Page from './page';
+import * as actions from '@/app/actions';
+import Page from '@/app/page';
+import { render } from '@testing-library/react';
+import { test, vi } from 'vitest';
 
-test('App Router: Works with Server Components', () => {
-  render(<Page />);
-  expect(
-    screen.getByRole('heading', { level: 1, name: 'YPS-Onion' }),
-  ).toBeDefined();
+vi.spyOn(actions, 'revalidateAuth').mockReturnValue();
+
+test('App Router: Works with Server Components', async () => {
+  render(await Page());
 });

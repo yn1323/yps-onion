@@ -1,4 +1,5 @@
 import { customErrorMap } from '@/src/helpers/validation/customErrorMap';
+import * as authHook from '@/src/hooks/useAuth';
 import { setProjectAnnotations } from '@storybook/react';
 import '@testing-library/jest-dom';
 import { vi } from 'vitest';
@@ -16,3 +17,7 @@ vi.mock('next/navigation', () => ({
 }));
 
 vi.spyOn(console, 'log').mockReturnValue();
+
+vi.spyOn(authHook, 'useAuth').mockReturnValue({
+  userId: 'test-user-id',
+});

@@ -10,6 +10,7 @@ import {
 } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
 import { afterEach, describe, expect, test, vi } from 'vitest';
+import * as actions from './actions';
 import * as stories from './index.stories';
 
 const user = userEvent.setup();
@@ -79,6 +80,54 @@ describe('UserForm Components', () => {
       expect(onSubmitMock.mock.calls[0][0]).toStrictEqual({
         userName: '0123456789',
       });
+    });
+    test('signUpUser Args Check', async () => {
+      const signUpUserSpy = vi.fn();
+      vi.spyOn(actions, 'signUpUser').mockImplementation(signUpUserSpy);
+      const { result } = renderHook(() => useUserForm());
+      render(
+        <UserFormInner
+          methods={result.current.methods}
+          onSubmit={result.current.onSubmit}
+        />,
+      );
+      const userInput = screen.getByText('ユーザー名');
+      const submitButton = screen.getByText('登録');
+      await user.click(submitButton);
+      expect(onSubmitMock).not.toHaveBeenCalled();
+
+      await user.type(userInput, '0123456789');
+      await user.click(submitButton);
+
+      expect(signUpUserSpy).toHaveBeenCalledOnce();
+      expect(signUpUserSpy).toHaveBeenCalledWith({
+        userName: '0123456789',
+        userId: 'test-user-id',
+      });
+    });
+  });
+  describe('Submit Operation', () => {
+    test('Submit Success', async () => {
+      vi.spyOn(actions, 'signUpUser').mockResolvedValue(true);
+      render(<Basic />);
+      const userInput = screen.getByLabelText('ユーザー名');
+      await userEvent.type(userInput, 'user');
+      const submit = screen.getByText('登録');
+      await userEvent.click(submit);
+      expect(
+        await screen.findByText('ユーザー登録が完了しました'),
+      ).toBeInTheDocument();
+    });
+    test('Submit Fail', async () => {
+      vi.spyOn(actions, 'signUpUser').mockResolvedValue(false);
+      render(<Basic />);
+      const userInput = screen.getByLabelText('ユーザー名');
+      await userEvent.type(userInput, 'user');
+      const submit = screen.getByText('登録');
+      await userEvent.click(submit);
+      expect(
+        await screen.findByText('ユーザー登録に失敗しました'),
+      ).toBeInTheDocument();
     });
   });
 });

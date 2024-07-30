@@ -19,7 +19,6 @@ export const useUserForm = () => {
     const isSucceeded = await signUpUser({ userId, userName: data.userName });
     if (isSucceeded) {
       showToast({ message: 'ユーザー登録が完了しました', type: 'success' });
-      // TODO redirect
     } else {
       showToast({ message: 'ユーザー登録に失敗しました', type: 'error' });
     }
