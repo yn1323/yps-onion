@@ -131,7 +131,37 @@ describe('ShopForm Components', () => {
   describe('Submit', () => {
     const onSubmitMock = vi.fn();
     test('Submit validation', async () => {
-      const { result } = renderHook(() => useShopForm());
+      const { result } = renderHook(() => useShopForm({}));
+      render(
+        <ShopFormInner
+          methods={result.current.methods}
+          onSubmit={onSubmitMock}
+        />,
+      );
+      const submit = screen.getByRole('button', { name: '登録' });
+      await user.click(submit);
+      expect(onSubmitMock).not.toHaveBeenCalled();
+
+      const shopName = screen.getByLabelText('店舗名');
+      const startTime = screen.getByLabelText('開始時間');
+      const endTime = screen.getByLabelText('終了時間');
+      const frequency = screen.getByLabelText('シフト提出頻度');
+      await user.type(shopName, 'shopName');
+      await user.type(startTime, '08:00');
+      await user.type(endTime, '23:30');
+      await user.selectOptions(frequency, '1m');
+      await user.click(submit);
+
+      // react-hook-formの利用しない引数も含まれるためexpect.objectContaining, expect.arrayContainingで判定しない
+      expect(onSubmitMock.mock.calls[0][0]).toStrictEqual({
+        shopName: 'shopName',
+        start: '08:00',
+        end: '23:30',
+        submitFrequency: '1m',
+      });
+    });
+    test('Submit validation with User Name', async () => {
+      const { result } = renderHook(() => useShopForm({}));
       render(
         <ShopFormInner
           methods={result.current.methods}

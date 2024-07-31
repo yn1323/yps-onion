@@ -27,3 +27,6 @@ runs:
       - name: Install dependencies
         shell: bash
         run: pnpm install
+      - name: Generate Prisma Types
+        shell: bash
+        run: pnpm prisma generate

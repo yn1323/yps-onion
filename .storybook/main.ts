@@ -2,7 +2,7 @@ import type { StorybookConfig } from '@storybook/nextjs';
 import path from 'node:path';
 
 const config: StorybookConfig = {
-  stories: ['../(app|components)/**/*.stories.@(ts|tsx)'],
+  stories: ['../components/**/*.stories.tsx'],
   addons: [
     '@storybook/addon-onboarding',
     '@storybook/addon-links',
@@ -35,12 +35,15 @@ const config: StorybookConfig = {
       '@/app': path.resolve(__dirname, '../app'),
       '@/components': path.resolve(__dirname, '../components'),
       '@/src': path.resolve(__dirname, '../src'),
+      '@/styles': path.resolve(__dirname, '../styles'),
     };
     return config;
   },
   env: (config) => ({
     ...config,
-    EXAMPLE_VAR: 'An environment variable configured in Storybook',
+    NEXT_PUBLIC_SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL ?? '',
+    NEXT_PUBLIC_SUPABASE_ANON_KEY:
+      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? '',
   }),
 };
 export default config;

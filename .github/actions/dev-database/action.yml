@@ -8,6 +8,9 @@ inputs:
   DIRECT_URL:
     description: 'Direct URL'
     required: true
+  TEST_USER_ID:
+    description: 'Test user ID'
+    required: true
 
 runs:
   using: "composite"
@@ -18,9 +21,10 @@ runs:
       env:
         DATABASE_URL: ${{ inputs.DATABASE_URL }}
         DIRECT_URL: ${{ inputs.DIRECT_URL }}
-    # - name: Seed database
-    #   shell: bash
-    #   run: pnpm prisma db seed
-    #   env:
-    #     DATABASE_URL: ${{ inputs.DATABASE_URL }}
-    #     DIRECT_URL: ${{ inputs.DIRECT_URL }}
+    - name: Seed database
+      shell: bash
+      run: pnpm prisma db seed
+      env:
+        DATABASE_URL: ${{ inputs.DATABASE_URL }}
+        DIRECT_URL: ${{ inputs.DIRECT_URL }}
+        TEST_USER_ID: ${{ inputs.TEST_USER_ID }}

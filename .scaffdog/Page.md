@@ -1,6 +1,6 @@
 ---
 name: "Page"
-root: "./app"
+root: "."
 output: []
 ignore: []
 questions:
@@ -9,20 +9,27 @@ questions:
 ---
 
 
-# `{{ inputs.path }}/page.tsx`
+# `app/{{ inputs.path }}/page.tsx`
 
 ```tsx
 {{ "Page/page.tsx" | read }}
 ```
 
-# `{{ inputs.path }}/page.stories.tsx`
+# `components/pages/{{ inputs.path }}/index.stories.tsx`
 
 ```tsx
-{{ "Page/page.stories.tsx" | read }}
+{{ "Page/index.stories.tsx" | read }}
 ```
 
-# `{{ inputs.path }}/page.test.tsx`
+# `components/pages/{{ inputs.path }}/index.test.tsx`
 
 ```tsx
-{{ "Page/page.test.tsx" | read }}
+{{ "Page/index.test.tsx" | read }}
+```
+
+
+# `components/pages/{{ inputs.path }}/index.tsx`
+
+```tsx
+{{ "Page/index.tsx" | read }}
 ```
