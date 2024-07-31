@@ -1,10 +1,10 @@
 import prisma from '@/prisma/libs/db';
 import { successLog } from '@/prisma/seeds/utils/log';
 import type { Prisma } from '@prisma/client';
-
 export const createUser = async () => {
   const data: Prisma.UserCreateInput = {
-    userName: 'user1',
+    userName: 'ユーザー 太郎',
+    userId: process.env.TEST_USER_ID,
   };
   const result = await prisma.user
     .createMany({

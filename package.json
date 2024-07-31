@@ -20,11 +20,12 @@
     "test-storybook": "test-storybook",
     "test-storybook:ci": "pnpm dlx concurrently -k -s first -n \"SB,TEST\" -c \"magenta,blue\" \"pnpm dlx http-server storybook-static --port 6006 --silent\" \"pnpm dlx wait-on tcp:127.0.0.1:6006 && pnpm test-storybook\"",
     "e2e": "playwright test",
-    "e2e:ui": "playwright test --ui",
-    "e2e:debug": "playwright test --debug",
-    "e2e:report": "playwright show-report",
+    "e2e:ui": "pnpm prisma:reset && playwright test --ui",
+    "e2e:debug": "pnpm prisma:reset && playwright test --debug",
+    "e2e:report": "pnpm prisma:reset && playwright show-report",
     "e2e:codegen": "playwright codegen",
-    "prisma": "prisma"
+    "prisma": "prisma",
+    "prisma:reset": "pnpm prisma db push --force-reset && pnpm prisma db seed"
   },
   "dependencies": {
     "@hookform/resolvers": "3.9.0",

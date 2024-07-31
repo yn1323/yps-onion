@@ -27,9 +27,9 @@
     },
     {
       "type": "shell",
-      "command": "pnpm prisma migrate reset",
+      "command": "pnpm prisma:reset",
       "label": "DBリセット",
-      "detail": "prisma migrate reset"
+      "detail": "pnpm prisma:reset"
     }
   ]
 }
