@@ -7,7 +7,7 @@ type Props = {
 
 const AuthLayout = async ({ children }: Props) => {
   await checkUser();
-  return children;
+  return <main className="h-screen">{children}</main>;
 };
 
 export default AuthLayout;

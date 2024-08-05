@@ -1,14 +1,25 @@
 'use server';
 
+import type { PostUserSignup } from '@/app/api/auth/user/signup/route';
+import { serverFetch } from '@/src/services/common/fetch';
+import { revalidatePath } from 'next/cache';
+
 type SignUpUserArgs = {
   userId: string;
   userName: string;
 };
 export const signUpUser = async ({ userId, userName }: SignUpUserArgs) => {
-  console.log('signUpUser Started');
-  console.log('userId: ', userId);
-  console.log('userName: ', userName);
-  console.log('signUpUser Ended');
+  const result = await serverFetch<PostUserSignup>('/api/auth/user/signup', {
+    method: 'POST',
+    query: {
+      userId,
+      userName,
+    },
+  });
 
-  return true;
+  if (result.success) {
+    revalidatePath('/');
+  }
+
+  return result.success;
 };

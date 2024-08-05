@@ -17,5 +17,19 @@
       "",
       "type $2Variants = Required<VariantProps<typeof $1>>;"
     ]
-  }
+  },
+  "Server Fetch": {
+    "prefix": "server-fetch",
+    "body": [
+      "const result = await serverFetch<$1>('/api/$2', {",
+      "  method: '$3',",
+      "  query: {",
+      "    $4",
+      "  },",
+      "  next: {",
+      "    revalidate: 1800,",
+      "  },",
+      "});",
+    ]
+  },
 }

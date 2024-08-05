@@ -12,10 +12,6 @@ export const checkUser = async () => {
   const { getUser } = auth();
   const pathname = nextPath();
 
-  if (SafePaths.some((p) => pathname?.includes(p))) {
-    return;
-  }
-
   const {
     data: { user },
   } = await getUser();
@@ -36,10 +32,15 @@ export const checkUser = async () => {
     },
   });
 
-  // 登録なし&エラー
-  if (!result || !result.exist) {
+  if (
+    (!result || !result.exist) &&
+    SafePaths.every((p) => !pathname?.includes(p))
+  ) {
     console.log('User Registration: No User Id Found');
     redirect('/signup/user');
+  } else if (result.exist && SafePaths.some((p) => pathname?.includes(p))) {
+    console.log('User Registration: User Id Found');
+    redirect('/dashboard');
   }
 
   // 登録済み
