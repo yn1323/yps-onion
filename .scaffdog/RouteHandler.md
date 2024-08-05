@@ -1,16 +1,17 @@
 ---
-name: "RouteHandler"
-root: "./app"
+name: "RouteHandler (Query Params)"
+root: "./app/api"
 output: []
 ignore: []
 questions:
-  component: "What is Route name(or mainly controls)??"
-  path: "What is path begins after app ??(i.e. (auth)/Users/[userId])"
+  path: "What is path begins after app, type after api/ ??(i.e. auth/user/signup)"
+  pathWithoutSlash: "Path without slash ??(i.e. AuthUserSignup)"
+  method: "What is http method??(i.e. post, get, put, delete)"
 ---
 
 
 # `{{ inputs.path }}/route.ts`
 
 ```tsx
-{{ "RouteHandler/route.ts" | read }}
+{{ "RouteHandler/query/route.ts" | read }}
 ```
