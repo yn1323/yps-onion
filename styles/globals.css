@@ -14,7 +14,7 @@ body {
     "BIZ UDPGothic",
     Meiryo,
     sans-serif;
-    @apply text-gray-700;
+    @apply text-gray-800;
 }
 
 a {
