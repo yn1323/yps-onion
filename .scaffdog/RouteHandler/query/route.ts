@@ -12,10 +12,9 @@ export type {{ inputs.method | pascal }}{{ inputs.pathWithoutSlash | pascal }} =
 
 const {{ inputs.method | pascal }}ApiName = '{{ inputs.method | pascal }}{{ inputs.pathWithoutSlash | pascal }}';
 export const {{ inputs.method | constant }} = async (request: NextRequest) => {
-  console.log(`${ {{ inputs.method | pascal }}ApiName} Started`);
 
   const data: {{ inputs.method | pascal }}{{ inputs.pathWithoutSlash | pascal }}['requestOptions']['query'] = await request.json();
-  console.trace(data);
+  console.log(`${ {{ inputs.method | pascal }}ApiName} Started`, data);
 
   const result = await prisma.user
     .create({
@@ -26,8 +25,7 @@ export const {{ inputs.method | constant }} = async (request: NextRequest) => {
       console.error(`${ {{ inputs.method | pascal }}ApiName} Failed`);
     });
 
-  console.trace(result);
-  console.log(`${ {{ inputs.method | pascal }}ApiName} Ended`);
+  console.log(`${ {{ inputs.method | pascal }}ApiName} Ended`, result);
 
   return Response.json({
     success: !!result,

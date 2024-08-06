@@ -14,13 +14,13 @@ export type GetAuthUser = BaseFetch & {
 };
 
 const GetApiName = 'GetAuthUser';
-export const GET = async (_: NextRequest, { params: { userId } }: Path) => {
-  console.log(`${GetApiName} Started`);
+export const GET = async (_: NextRequest, path: Path) => {
+  console.log(`${GetApiName} Started`, path.params);
 
   const result = await prisma.user
     .findUnique({
       where: {
-        userId,
+        userId: path.params.userId,
       },
     })
     .catch((e) => {
@@ -28,8 +28,7 @@ export const GET = async (_: NextRequest, { params: { userId } }: Path) => {
       console.error(`${GetApiName} Failed`);
     });
 
-  console.trace(result);
-  console.log(`${GetApiName} Ended`);
+  console.log(`${GetApiName} Ended`, result);
 
   return Response.json({
     success: !!result,
@@ -46,10 +45,8 @@ export type PostAuthUser = BaseFetch & {
 
 const PostApiName = 'PostAuthUser';
 export const POST = async (request: NextRequest) => {
-  console.log(`${PostApiName} Started`);
-
   const data: PostAuthUser['requestOptions']['query'] = await request.json();
-  console.trace(data);
+  console.log(`${PostApiName} Started`, data);
 
   const result = await prisma.user
     .create({
@@ -60,8 +57,7 @@ export const POST = async (request: NextRequest) => {
       console.error(`${PostApiName} Failed`);
     });
 
-  console.trace(result);
-  console.log(`${PostApiName} Ended`);
+  console.log(`${PostApiName} Ended`, result);
 
   return Response.json({
     success: !!result,

@@ -40,7 +40,7 @@ export const checkUser = async () => {
   }
 
   // 登録済み
-  console.trace('User Registration: User Id Found', userId);
+  console.log('User Registration: User Id Found', userId);
 
   return result;
 };

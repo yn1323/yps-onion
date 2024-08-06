@@ -14,13 +14,13 @@ export type {{ inputs.method | pascal }}{{ inputs.pathWithoutSlash | pascal }} =
 };
 
 const {{ inputs.method | pascal }}ApiName = '{{ inputs.method | pascal }}{{ inputs.pathWithoutSlash | pascal }}';
-export const {{ inputs.method | constant }} = async (_: NextRequest, { params: { userId } }: Path) => {
-  console.log(`${{{ inputs.method | pascal }}ApiName} Started`);
+export const {{ inputs.method | constant }} = async (_: NextRequest, path: Path) => {
+  console.log(`${{{ inputs.method | pascal }}ApiName} Started`, path);
 
   const result = await prisma.user
     .findUnique({
       where: {
-        userId,
+        userId: path.params.userId,
       },
     })
     .catch((e) => {
@@ -28,8 +28,7 @@ export const {{ inputs.method | constant }} = async (_: NextRequest, { params: {
       console.error(`${{{ inputs.method | pascal }}ApiName} Failed`);
     });
 
-  console.trace(result);
-  console.log(`${{{ inputs.method | pascal }}ApiName} Ended`);
+  console.log(`${{{ inputs.method | pascal }}ApiName} Ended`, result);
 
   return Response.json({
     success: !!result,
