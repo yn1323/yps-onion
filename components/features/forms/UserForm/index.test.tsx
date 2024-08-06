@@ -82,8 +82,9 @@ describe('UserForm Components', () => {
       });
     });
     test('signUpUser Args Check', async () => {
-      const signUpUserSpy = vi.fn();
-      vi.spyOn(actions, 'signUpUser').mockImplementation(signUpUserSpy);
+      const signUpUserSpy = vi
+        .spyOn(actions, 'signUpUser')
+        .mockResolvedValue(true);
       const { result } = renderHook(() => useUserForm());
       render(
         <UserFormInner
@@ -109,6 +110,7 @@ describe('UserForm Components', () => {
   describe('Submit Operation', () => {
     test('Submit Success', async () => {
       vi.spyOn(actions, 'signUpUser').mockResolvedValue(true);
+      const redirectSpy = vi.spyOn(actions, 'successRedirect');
       render(<Basic />);
       const userInput = screen.getByLabelText('ユーザー名');
       await userEvent.type(userInput, 'user');
@@ -117,9 +119,11 @@ describe('UserForm Components', () => {
       expect(
         await screen.findByText('ユーザー登録が完了しました'),
       ).toBeInTheDocument();
+      expect(redirectSpy).toHaveBeenCalledOnce();
     });
     test('Submit Fail', async () => {
       vi.spyOn(actions, 'signUpUser').mockResolvedValue(false);
+      const redirectSpy = vi.spyOn(actions, 'successRedirect');
       render(<Basic />);
       const userInput = screen.getByLabelText('ユーザー名');
       await userEvent.type(userInput, 'user');
@@ -128,6 +132,7 @@ describe('UserForm Components', () => {
       expect(
         await screen.findByText('ユーザー登録に失敗しました'),
       ).toBeInTheDocument();
+      expect(redirectSpy).not.toHaveBeenCalled();
     });
   });
 });

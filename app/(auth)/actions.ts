@@ -1,6 +1,6 @@
 'use server';
 
-import type { PostUserExistence } from '@/app/api/auth/user/route';
+import type { GetAuthUser } from '@/app/api/auth/user/[userId]/route';
 import { auth } from '@/src/helpers/auth/auth';
 import { nextPath } from '@/src/helpers/next';
 import { serverFetch } from '@/src/services/common/fetch';
@@ -22,27 +22,25 @@ export const checkUser = async () => {
     redirect('/login');
   }
 
-  const result = await serverFetch<PostUserExistence>('/api/auth/user', {
-    method: 'POST',
-    query: {
-      userId,
-    },
+  const result = await serverFetch<GetAuthUser>(`/api/auth/user/${userId}`, {
     next: {
       revalidate: 1800,
     },
   });
 
   if (
-    (!result || !result.exist) &&
+    (!result || !result.success) &&
     SafePaths.every((p) => !pathname?.includes(p))
   ) {
     console.log('User Registration: No User Id Found');
     redirect('/signup/user');
-  } else if (result.exist && SafePaths.some((p) => pathname?.includes(p))) {
+  } else if (result.success && SafePaths.some((p) => pathname?.includes(p))) {
     console.log('User Registration: User Id Found');
     redirect('/dashboard');
   }
 
   // 登録済み
   console.trace('User Registration: User Id Found', userId);
+
+  return result;
 };
