@@ -4,6 +4,7 @@ import { SelectButton } from '@/components/atoms/SelectButton';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import {
+  FcAddDatabase,
   FcAlarmClock,
   FcHome,
   FcOpenedFolder,
@@ -51,19 +52,38 @@ export const Menu = ({ userName, shops }: Props) => {
         <div className="flex w-full flex-col items-stretch justify-between space-y-3">
           <Link
             href="/profile"
-            className="flex w-full items-center justify-between gap-4"
+            className="flex w-full items-center justify-between gap-4 rounded-sm"
           >
             <IoPersonCircle size="36" className="text-slate-700" />
             <div className="grow">{userName}</div>
           </Link>
+
+          {shopOptions.length === 0 ? (
+            <span className="text-center text-xs">
+              店舗が登録されていません。
+            </span>
+          ) : shopOptions.length === 1 ? (
+            <span className="text-ellipsis text-center">{shops[0].name}</span>
+          ) : (
+            <SelectButton
+              onSelect={(value) => {
+                router.push(`/${value}`);
+              }}
+              options={shopOptions}
+              forceSelect
+            />
+          )}
+
           <Delimiter />
-          <SelectButton
-            onSelect={(value) => {
-              router.push(`/${value}`);
-            }}
-            options={shopOptions}
-            forceSelect
-          />
+          <LinkButton
+            theme="skeleton"
+            icon={<FcAddDatabase />}
+            fullWidth
+            href={'/shop/create'}
+            align="left"
+          >
+            店舗の作成 / 登録
+          </LinkButton>
           <Delimiter />
           <ul className="space-y-4">
             {Object.values(Links).map(({ icon, label, link }) => (

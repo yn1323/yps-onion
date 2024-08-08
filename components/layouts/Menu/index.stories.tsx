@@ -6,10 +6,7 @@ const meta = {
   component: Menu,
   args: {
     userName: '山田太郎',
-    shops: [
-      { id: '1', name: '店舗1' },
-      { id: '2', name: '店舗2' },
-    ],
+    shops: [{ id: '1', name: '店舗1' }],
   },
   parameters: {
     layout: 'fullscreen',
@@ -18,3 +15,18 @@ const meta = {
 export default meta;
 
 export const Basic: StoryObj<typeof meta> = {};
+
+export const MultipleShops: StoryObj<typeof meta> = {
+  args: {
+    shops: [
+      { id: '1', name: '店舗1' },
+      { id: '2', name: '店舗2' },
+    ],
+  },
+};
+
+export const NoShop: StoryObj<typeof meta> = {
+  args: {
+    shops: [],
+  },
+};
