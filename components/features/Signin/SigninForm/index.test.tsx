@@ -41,12 +41,15 @@ describe('SigninForm Components', () => {
     test('Max Length', async () => {
       render(<Basic />);
       const emailInput = screen.getByLabelText('メールアドレス');
-      await user.type(emailInput, `${'0123456789'.repeat(9)}@01234.com`);
+      userEvent.click(emailInput);
+      await userEvent.paste(`${'0123456789'.repeat(9)}@01234.com`);
       fireEvent.blur(emailInput);
       expect(
         screen.queryByText('100文字以内で入力してください'),
       ).not.toBeInTheDocument();
-      await user.type(emailInput, `${'0123456789'.repeat(9)}@012345.com`);
+
+      userEvent.click(emailInput);
+      await userEvent.paste(`${'0123456789'.repeat(9)}@012345.com`);
       fireEvent.blur(emailInput);
       expect(
         await screen.findByText('100文字以内で入力してください'),
@@ -79,9 +82,10 @@ describe('SigninForm Components', () => {
     test('Max Length', async () => {
       render(<Basic />);
       const passwordInput = screen.getByLabelText('パスワード');
-      const typeWord = 'a'.repeat(25);
-      await userEvent.type(passwordInput, typeWord);
-      fireEvent.focus(passwordInput);
+
+      userEvent.click(passwordInput);
+      await userEvent.paste('a'.repeat(25));
+
       fireEvent.blur(passwordInput);
       expect(
         await screen.findByText('8〜24文字で入力してください'),

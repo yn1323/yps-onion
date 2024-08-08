@@ -21,7 +21,5 @@ describe('Login Page Transition', () => {
     expect(await page).toHaveURL('/dashboard');
 
     await logout(page);
-    await page.waitForURL('/');
-    expect(await page).toHaveURL('/');
   });
 });

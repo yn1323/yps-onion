@@ -15,15 +15,21 @@
     },
     {
       "type": "shell",
+      "command": "pnpm prisma generate",
+      "label": "DBSchemaをPrismaの型に適用",
+      "detail": "prisma generate"
+    },
+    {
+      "type": "shell",
       "command": "pnpm prisma db seed",
       "label": "Seedデータの追加",
       "detail": "prisma db seed"
     },
     {
       "type": "shell",
-      "command": "pnpm prisma migrate reset",
+      "command": "pnpm prisma:reset",
       "label": "DBリセット",
-      "detail": "prisma migrate reset"
+      "detail": "pnpm prisma:reset"
     }
   ]
 }

@@ -1,10 +1,17 @@
 import { createServerClient } from '@supabase/ssr';
-import { type NextRequest, NextResponse } from 'next/server';
+import type { NextRequest } from 'next/dist/server/web/spec-extension/request';
+import { NextResponse } from 'next/dist/server/web/spec-extension/response';
 
 // SITE: https://supabase.com/docs/guides/auth/server-side/nextjs
 export async function updateSession(request: NextRequest) {
+  const requestHeaders = new Headers(request.headers);
+  requestHeaders.set('next-url', request.url);
+
   let supabaseResponse = NextResponse.next({
-    request,
+    request: {
+      ...request,
+      headers: new Headers(requestHeaders),
+    },
   });
 
   const supabase = createServerClient(
@@ -30,13 +37,19 @@ export async function updateSession(request: NextRequest) {
     },
   );
 
+  if (SafePages.includes(request.nextUrl.pathname)) {
+    return supabaseResponse;
+  }
+
+  const isApi = request.nextUrl.pathname.includes('/api');
+  if (isApi) {
+    return supabaseResponse;
+  }
+
   const {
     data: { user },
   } = await supabase.auth.getUser();
 
-  if (SafePages.includes(request.nextUrl.pathname)) {
-    return supabaseResponse;
-  }
   if (!user && !request.nextUrl.pathname.startsWith('/login')) {
     const url = request.nextUrl.clone();
     url.pathname = '/login';

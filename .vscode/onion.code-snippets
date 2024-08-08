@@ -17,5 +17,56 @@
       "",
       "type $2Variants = Required<VariantProps<typeof $1>>;"
     ]
-  }
+  },
+  "Server Fetch": {
+    "prefix": "server-fetch",
+    "body": [
+      "const result = await serverFetch<$1>('/api/$2', {",
+      "  method: '$3',",
+      "  query: {",
+      "    $4",
+      "  },",
+      "  next: {",
+      "    revalidate: 1800,",
+      "  },",
+      "});",
+    ]
+  },
+  "API Route": {
+    "prefix": "api-route-query",
+    "body": [
+      "export type $1 = BaseFetch & {",
+      "  response: CommonResponse<Prisma.UserCreateArgs['data']>;",
+      "  requestOptions: {",
+      "    query: Prisma.UserCreateInput;",
+      "  };",
+      "};",
+      "",
+      "const $2ApiName = '$1';",
+      "export const $3 = async (request: NextRequest) => {",
+      "  console.log(`${$2ApiName} Started`);",
+      "",
+      "  const data: $1['requestOptions']['query'] =",
+      "    await request.json();",
+      "  console.trace(data);",
+      " ",
+      "  const result = await prisma.user",
+      "    .create({",
+      "      data,",
+      "    })",
+      "    .catch((e) => {",
+      "      console.error(e);",
+      "      console.error(`${$2ApiName} Failed`);",
+      "    });",
+      "",
+      "  console.trace(result);",
+      "  console.log(`${$2ApiName} Ended`);",
+      "",
+     "   return Response.json({",
+      "     success: !!result,",
+      "    result,",
+      "  });",
+      "};",
+    ]
+  },
 }

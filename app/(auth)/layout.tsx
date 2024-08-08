@@ -1,3 +1,4 @@
+import { checkUser } from '@/app/(auth)/actions';
 import type { ReactNode } from 'react';
 
 type Props = {
@@ -5,7 +6,8 @@ type Props = {
 };
 
 const AuthLayout = async ({ children }: Props) => {
-  return children;
+  await checkUser();
+  return <main className="h-screen">{children}</main>;
 };
 
 export default AuthLayout;

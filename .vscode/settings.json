@@ -24,7 +24,8 @@
     "commands": [
       {
         "match": "\\.(ts|tsx)$",
-        "cmd": "pnpm dlx @biomejs/biome lint ${file} --only=style/useSortedClasses"
+        // "cmd": "pnpm dlx @biomejs/biome lint ${file} --only=style/useSortedClasses"
+        "cmd": "biome check . --write --unsafe"
       }
     ]
   },

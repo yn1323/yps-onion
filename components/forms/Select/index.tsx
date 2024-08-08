@@ -56,6 +56,7 @@ export const Select = ({
       {label && <label htmlFor={id}>{label}</label>}
       <select
         {...register(id)}
+        aria-label={label}
         className={select({ disabled, error: !!errorMessage })}
         aria-describedby={`${id}-説明文`}
         aria-errormessage={`${id}-エラーメッセージ`}

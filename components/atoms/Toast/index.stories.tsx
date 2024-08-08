@@ -1,7 +1,7 @@
 import { Button } from '@/components/atoms/Button';
 import type { Meta, StoryObj } from '@storybook/react';
 import { userEvent, within } from '@storybook/test';
-import { Toast, ToastInner, useToast } from '.';
+import { ToastInner, useToast } from '.';
 
 const meta = {
   title: 'atoms/Toast',
@@ -40,7 +40,6 @@ export const Operation = {
         >
           show
         </Button>
-        <Toast />
       </div>
     );
   },

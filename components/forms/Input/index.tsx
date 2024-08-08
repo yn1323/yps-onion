@@ -47,8 +47,6 @@ export const Input = ({
     [id, disabled, errors[id]?.message],
   );
 
-  console.log(label);
-
   return (
     <div className="flex flex-col">
       {label && <label htmlFor={id}>{label}</label>}
