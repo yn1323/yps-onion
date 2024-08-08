@@ -4,7 +4,13 @@ import { Menu } from '.';
 const meta = {
   title: 'layouts/Menu',
   component: Menu,
-  args: {},
+  args: {
+    userName: '山田太郎',
+    shops: [
+      { id: '1', name: '店舗1' },
+      { id: '2', name: '店舗2' },
+    ],
+  },
   parameters: {
     layout: 'fullscreen',
   },
