@@ -14,6 +14,7 @@ vi.mock('next/navigation', () => ({
   useRouter: () => ({
     push: vi.fn(),
   }),
+  redirect: vi.fn(),
 }));
 
 vi.spyOn(console, 'log').mockReturnValue();

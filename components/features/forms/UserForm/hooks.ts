@@ -1,5 +1,8 @@
 import { useToast } from '@/components/atoms/Toast';
-import { signUpUser } from '@/components/features/forms/UserForm/actions';
+import {
+  signUpUser,
+  successRedirect,
+} from '@/components/features/forms/UserForm/actions';
 import { Schema } from '@/components/features/forms/UserForm/schema';
 import { useAuth } from '@/src/hooks/useAuth';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -19,6 +22,7 @@ export const useUserForm = () => {
     const isSucceeded = await signUpUser({ userId, userName: data.userName });
     if (isSucceeded) {
       showToast({ message: 'ユーザー登録が完了しました', type: 'success' });
+      await successRedirect();
     } else {
       showToast({ message: 'ユーザー登録に失敗しました', type: 'error' });
     }

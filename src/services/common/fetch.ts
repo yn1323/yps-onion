@@ -1,3 +1,4 @@
+import { getEnv } from '@/src/helpers/env';
 import type { RevalidateTagType } from '@/src/services/common/tags';
 import type { RequestInit } from 'next/dist/server/web/spec-extension/request';
 import { cookies, headers } from 'next/headers';
@@ -40,8 +41,9 @@ const baseFetch = async <T extends BaseFetch>(
   const body = method === 'GET' ? {} : { body: JSON.stringify(query) };
 
   const cache = { cache: options?.cache ?? 'no-store' };
-
   const next = { next: options?.next ?? {} };
+
+  const { IS_LOCAL } = getEnv();
 
   const res = await fetch(targetUrl, {
     method,
@@ -50,7 +52,7 @@ const baseFetch = async <T extends BaseFetch>(
       cookie: `token=${cookie}`,
       'Content-Type': 'application/json',
     },
-    ...(options?.next ? next : cache),
+    ...(IS_LOCAL ? { cache: 'no-store' } : options?.next ? next : cache),
   });
   // biome-ignore lint/style/useBlockStatements: <explanation>
   if (!res.ok) return {};

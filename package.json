@@ -85,5 +85,10 @@
   },
   "prisma": {
     "seed": "tsx  ./prisma/seeds/index.ts"
+  },
+  "msw": {
+    "workerDirectory": [
+      "public"
+    ]
   }
 }
