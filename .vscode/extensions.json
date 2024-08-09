@@ -6,7 +6,5 @@
     "ms-playwright.playwright",
     "vitest.explorer",
     "prisma.prisma",
-    "dbaeumer.vscode-eslint",
-    "esbenp.prettier-vscode"
   ]
 }
