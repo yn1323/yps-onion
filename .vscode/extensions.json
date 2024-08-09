@@ -5,6 +5,6 @@
     "streetsidesoftware.code-spell-checker",
     "ms-playwright.playwright",
     "vitest.explorer",
-    "prisma.prisma",
+    "prisma.prisma"
   ]
 }
