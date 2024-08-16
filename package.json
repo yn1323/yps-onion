@@ -77,7 +77,7 @@
     "prisma": "5.18.0",
     "scaffdog": "4.0.0",
     "storybook": "8.2.8",
-    "tailwindcss": "3.4.9",
+    "tailwindcss": "3.4.10",
     "ts-node": "10.9.2",
     "tsx": "^4.16.2",
     "typescript": "5.5.4",
