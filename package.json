@@ -69,7 +69,7 @@
     "chromatic": "11.7.1",
     "dotenv": "^16.4.5",
     "happy-dom": "15.0.0",
-    "jsdom": "24.1.1",
+    "jsdom": "25.0.0",
     "msw": "2.3.5",
     "msw-storybook-addon": "2.0.3",
     "playwright": "1.46.1",
