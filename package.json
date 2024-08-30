@@ -33,7 +33,7 @@
     "@supabase/ssr": "^0.5.0",
     "@supabase/supabase-js": "2.45.2",
     "date-fns": "3.6.0",
-    "framer-motion": "11.3.30",
+    "framer-motion": "11.3.31",
     "jotai": "2.9.3",
     "next": "latest",
     "react": "18.3.1",
