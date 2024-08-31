@@ -73,7 +73,7 @@
     "msw": "2.4.1",
     "msw-storybook-addon": "2.0.3",
     "playwright": "1.46.1",
-    "postcss": "8.4.41",
+    "postcss": "8.4.42",
     "prisma": "5.19.0",
     "scaffdog": "4.0.0",
     "storybook": "8.2.9",
