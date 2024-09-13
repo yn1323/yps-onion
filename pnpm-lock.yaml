@@ -130,11 +130,11 @@ importers:
         specifier: 25.0.0
         version: 25.0.0
       msw:
-        specifier: 2.4.3
-        version: 2.4.3(typescript@5.5.4)
+        specifier: 2.4.6
+        version: 2.4.6(typescript@5.5.4)
       msw-storybook-addon:
         specifier: 2.0.3
-        version: 2.0.3(msw@2.4.3(typescript@5.5.4))
+        version: 2.0.3(msw@2.4.6(typescript@5.5.4))
       playwright:
         specifier: 1.47.0
         version: 1.47.0
@@ -1607,8 +1607,8 @@ packages:
       '@types/react': '>=16'
       react: '>=16'
 
-  '@mswjs/interceptors@0.29.1':
-    resolution: {integrity: sha512-3rDakgJZ77+RiQUuSK69t1F0m8BQKA8Vh5DCS5V0DWvNY67zob2JhhQrhCO0AKLGINTRSFd1tBaHcJTkhefoSw==}
+  '@mswjs/interceptors@0.35.3':
+    resolution: {integrity: sha512-/7DWMTsCh5Ur4yT1f6Vql48VHXkOSPXOMMBWk67lSpymHOxyNuoAA0RBKi77J/9jL7UQzzsBI2ZGjDw/vbSJFw==}
     engines: {node: '>=18'}
 
   '@next/env@14.2.11':
@@ -5013,8 +5013,8 @@ packages:
     peerDependencies:
       msw: ^2.0.0
 
-  msw@2.4.3:
-    resolution: {integrity: sha512-PXK3wOQHwDtz6JYVyAVlQtzrLr6bOAJxggw5UHm3CId79+W7238aNBD1zJVkFY53o/DMacuIfgesW2nv9yCO3Q==}
+  msw@2.4.6:
+    resolution: {integrity: sha512-flx3DIP3+a81vvEY1lCmZVFKVYVcDiizNHg6mHYc2+F2xU+4LmZ6P2eYZUGEFoJWqA3yRWS70pJa0riFVTb5FQ==}
     engines: {node: '>=18'}
     hasBin: true
     peerDependencies:
@@ -8362,7 +8362,7 @@ snapshots:
       '@types/react': 18.3.5
       react: 18.3.1
 
-  '@mswjs/interceptors@0.29.1':
+  '@mswjs/interceptors@0.35.3':
     dependencies:
       '@open-draft/deferred-promise': 2.2.0
       '@open-draft/logger': 0.3.0
@@ -12533,18 +12533,18 @@ snapshots:
 
   ms@2.1.3: {}
 
-  msw-storybook-addon@2.0.3(msw@2.4.3(typescript@5.5.4)):
+  msw-storybook-addon@2.0.3(msw@2.4.6(typescript@5.5.4)):
     dependencies:
       is-node-process: 1.2.0
-      msw: 2.4.3(typescript@5.5.4)
+      msw: 2.4.6(typescript@5.5.4)
 
-  msw@2.4.3(typescript@5.5.4):
+  msw@2.4.6(typescript@5.5.4):
     dependencies:
       '@bundled-es-modules/cookie': 2.0.0
       '@bundled-es-modules/statuses': 1.0.1
       '@bundled-es-modules/tough-cookie': 0.1.6
       '@inquirer/confirm': 3.1.14
-      '@mswjs/interceptors': 0.29.1
+      '@mswjs/interceptors': 0.35.3
       '@open-draft/until': 2.1.0
       '@types/cookie': 0.6.0
       '@types/statuses': 2.0.5
