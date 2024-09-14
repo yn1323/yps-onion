@@ -49,19 +49,21 @@ export const Input = ({
 
   return (
     <div className="flex flex-col">
-      {label && <label htmlFor={id}>{label}</label>}
-      <input
-        className={input({ disabled, error: !!errorMessage })}
-        {...register(id)}
-        id={id}
-        type={type}
-        disabled={disabled}
-        placeholder={placeholder}
-        maxLength={maxLength}
-        aria-describedby={`${id}-説明文`}
-        aria-errormessage={`${id}-エラーメッセージ`}
-        aria-invalid={!!errorMessage}
-      />
+      <label>
+        {label}
+        <input
+          className={input({ disabled, error: !!errorMessage })}
+          {...register(id)}
+          id={id}
+          type={type}
+          disabled={disabled}
+          placeholder={placeholder}
+          maxLength={maxLength}
+          aria-describedby={`${id}-説明文`}
+          aria-errormessage={`${id}-エラーメッセージ`}
+          aria-invalid={!!errorMessage}
+        />
+      </label>
       {description && <span id={`${id}-説明文`}>{description}</span>}
       {errorMessage && (
         <span id={`${id}-エラーメッセージ`} className="text-red-500">
