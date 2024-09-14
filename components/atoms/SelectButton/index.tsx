@@ -29,21 +29,23 @@ export const SelectButton = ({
 }: Props) => {
   return (
     <div className="flex flex-col">
-      {label && <label htmlFor={id}>{label}</label>}
-      <select
-        aria-label={label}
-        className={selectButton({ disabled })}
-        disabled={disabled}
-        defaultValue={options.find((option) => option.selected)?.value}
-        onChange={(e) => onSelect(e.target.value)}
-      >
-        {!forceSelect && <option>{placeholder}</option>}
-        {options.map(({ label, value }, i) => (
-          <option key={i} value={value}>
-            {label}
-          </option>
-        ))}
-      </select>
+      <label htmlFor={id}>
+        {label}
+        <select
+          aria-label={label}
+          className={selectButton({ disabled })}
+          disabled={disabled}
+          defaultValue={options.find((option) => option.selected)?.value}
+          onChange={(e) => onSelect(e.target.value)}
+        >
+          {!forceSelect && <option>{placeholder}</option>}
+          {options.map(({ label, value }, i) => (
+            <option key={i} value={value}>
+              {label}
+            </option>
+          ))}
+        </select>
+      </label>
     </div>
   );
 };
