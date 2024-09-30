@@ -53,23 +53,26 @@ export const Select = ({
 
   return (
     <div className="flex flex-col">
-      {label && <label htmlFor={id}>{label}</label>}
-      <select
-        {...register(id)}
-        aria-label={label}
-        className={select({ disabled, error: !!errorMessage })}
-        aria-describedby={`${id}-説明文`}
-        aria-errormessage={`${id}-エラーメッセージ`}
-        aria-invalid={!!errorMessage}
-        disabled={disabled}
-      >
-        {!forceSelect && <option>{placeholder}</option>}
-        {options.map(({ label, value, selected }, i) => (
-          <option key={i} value={value} selected={selected}>
-            {label}
-          </option>
-        ))}
-      </select>
+      <label>
+        {label}
+        <select
+          {...register(id)}
+          aria-label={label}
+          className={select({ disabled, error: !!errorMessage })}
+          aria-describedby={`${id}-説明文`}
+          aria-errormessage={`${id}-エラーメッセージ`}
+          aria-invalid={!!errorMessage}
+          disabled={disabled}
+        >
+          {!forceSelect && <option>{placeholder}</option>}
+          {options.map(({ label, value, selected }, i) => (
+            <option key={i} value={value} selected={selected}>
+              {label}
+            </option>
+          ))}
+        </select>
+      </label>
+
       {description && <span id={`${id}-説明文`}>{description}</span>}
       {errorMessage && (
         <span id={`${id}-エラーメッセージ`} className="text-red-500">
