@@ -31,7 +31,7 @@
     "@hookform/resolvers": "3.9.0",
     "@prisma/client": "5.21.1",
     "@supabase/ssr": "^0.5.0",
-    "@supabase/supabase-js": "2.45.5",
+    "@supabase/supabase-js": "2.45.6",
     "date-fns": "4.1.0",
     "framer-motion": "11.11.9",
     "jotai": "2.10.1",
