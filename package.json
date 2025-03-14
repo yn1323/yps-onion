@@ -47,7 +47,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
-    "@chromatic-com/storybook": "2.0.2",
+    "@chromatic-com/storybook": "3.2.6",
     "@playwright/test": "1.48.1",
     "@storybook/addon-a11y": "8.3.6",
     "@storybook/addon-essentials": "8.3.6",
