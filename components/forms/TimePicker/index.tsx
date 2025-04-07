@@ -46,20 +46,22 @@ export const TimePicker = ({
 
   return (
     <div className="flex flex-col">
-      {label && <label htmlFor={id}>{label}</label>}
-      <input
-        className={timePicker({ disabled, error: !!errorMessage })}
-        {...register(id)}
-        id={id}
-        type="time"
-        disabled={disabled}
-        placeholder={placeholder}
-        aria-describedby={`${id}-説明文`}
-        aria-errormessage={`${id}-エラーメッセージ`}
-        aria-invalid={!!errorMessage}
-        max={max}
-        min={min}
-      />
+      <label>
+        {label}
+        <input
+          className={timePicker({ disabled, error: !!errorMessage })}
+          {...register(id)}
+          id={id}
+          type="time"
+          disabled={disabled}
+          placeholder={placeholder}
+          aria-describedby={`${id}-説明文`}
+          aria-errormessage={`${id}-エラーメッセージ`}
+          aria-invalid={!!errorMessage}
+          max={max}
+          min={min}
+        />
+      </label>
 
       {description && <span id={`${id}-説明文`}>{description}</span>}
       {errorMessage && (

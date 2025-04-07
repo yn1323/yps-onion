@@ -24,7 +24,7 @@ const preview: Preview = {
         date: /Date$/,
       },
     },
-    chromatic: { viewports: [414, 1080] },
+    chromatic: { viewports: [1080] },
   },
   loaders: [mswLoader],
   decorators: [
