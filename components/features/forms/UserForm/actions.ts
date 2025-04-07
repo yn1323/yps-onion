@@ -2,7 +2,6 @@
 
 import type { PostAuthUser } from '@/app/api/auth/user/[userId]/route';
 import { serverFetch } from '@/src/services/common/fetch';
-import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 
 type SignUpUserArgs = {
@@ -19,7 +18,7 @@ export const signUpUser = async ({ userId, userName }: SignUpUserArgs) => {
   });
 
   if (result.success) {
-    revalidatePath('/');
+    // revalidatePath('/');
   }
 
   return result.success;
