@@ -2,6 +2,6 @@
 
 import { revalidatePath } from 'next/cache';
 
-export const revalidateAuth = () => {
+export const revalidateAuth = async () => {
   revalidatePath('/api/auth/user');
 };

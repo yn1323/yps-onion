@@ -1,4 +1,3 @@
-import { revalidateAuth } from '@/components/pages/actions';
 import Link from 'next/link';
 
 export const metadata = {
@@ -6,7 +5,6 @@ export const metadata = {
 };
 
 export const MainPage = async () => {
-  await revalidateAuth();
   return <MainPageInner />;
 };
 
